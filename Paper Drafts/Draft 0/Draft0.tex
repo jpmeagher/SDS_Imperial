@@ -1,0 +1,111 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Review Volume (last updated on 20-4-2015)                            %%
+%% Trim Size: 9in x 6in                                                 %%
+%% Text Area: 7.35in (include runningheads) x 4.5in                     %%
+%% Main Text: 10 on 13pt                                                %%
+%% For support: Yolande Koh, <ykoh@wspc.com.sg>                         %%
+%%              D. Rajesh Babu, <rajesh@wspc.com.sg>                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
+\documentclass{ws-rv9x6}
+\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+\usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
+\usepackage{ws-rv-van}   % numbered citation & references (default)
+%\usepackage{ws-index}   % to produce multiple indexes
+\makeindex
+%\newindex{aindx}{adx}{and}{Author Index}       % author index
+%\renewindex{default}{idx}{ind}{Subject Index}  % subject index
+
+\begin{document}
+
+\chapter[Ancestral Reconstruction of Bat Echolocation Calls]{Ancestral Reconstruction of Bat Echolocation Calls}\label{ra_ch1}
+
+\author[J.P. Meagher et al.]{J.P. Meagher\footnote{Author footnote.}}
+%\index[aindx]{Author, F.} % or \aindx{Author, F.}
+%\index[aindx]{Author, S.} % or \aindx{Author, S.}
+
+\address{Department of Statistics,\\
+University of Warwick, \\
+J.Meagher@Warwick.ac.uk\footnote{Affiliation footnote.}}
+
+\begin{abstract}
+The stated aim of the Statistical Data Science workshop jointly organised by the Department of Mathematics and Data Science Institute at Imperial College London, and Winton Global investment management, is ``exploring the nature of the relationship between statistics and data science''. 
+\end{abstract}
+%\markright{Customized Running Head for Odd Page} % default is Chapter Title.
+\body
+
+%\tableofcontents
+
+\section{Introduction}
+
+\subsection{Motivation}
+Data science, the `` study of the generalisable extraction of knowledge from data'' \cite{dhar2013data} is motivated by availability of interesting datasets. One field producing such datasets is Bioacoustics, where data is collected, often through citizen science \cite{kullenberg2016citizen} initiatives, for monitoring and conservation purposes.\cite{allen2006citizen} Bats (order \textit{Chiroptera}) have been of particular interest.\cite{pettorelli2013indicator} 
+
+Bats form the second most speciose order of mammals, behind rodents, with over 1200 species. \cite{simmons2005order} Bats have been identified as ideal bioindicators for monitoring climate change and habitat quality.\cite{jones2009carpe} Good bioindicators are easy to identify and sample, well distributed geographically, respond to changes in habitat in a manner correlated with other taxa, and have a well understood natural history.\cite{moreno2007shortcuts} Bats have the potential to satisfy these characteristics excellently.
+
+Bats are, for the most part, nocturnal, flying echolocators.\cite{kunz1994bats} Echolocation refers to the bats use of, typically ultrasonic\cite{corso1963bone}, calls and their echoes to forage and navigate in the night sky.\cite{griffin1944echolocation} Thus, bats leak information about themselves into the environment, allowing acoustic monitoring.\cite{pettorelli2013indicator}. Work towards the development of automatic acoustic monitoring algorithms for bats \cite{stathopoulos2017bat} \cite{walters2012continental} is ongoing. Similar algorithms have been developed for insects\cite{chesmore2004automated} and birds\cite{briggs2012acoustic}, reflecting the level of interest in bioacoustic monitoring.
+
+The growing database of bat call recordings \cite{collen2012evolution} also opens up other avenues for research. Bat echolocation calls are diverse and can generally be sorted into categories according to the duration, bandwidth and use of harmonics in the call.\cite{maltby20104} It has been observed that closely related species have similar call structures indicating that some of the variation is due to a shared evolutionary history.\cite{jones2006evolution} Comparative analysis of bat echolocation call parameters for ancestral reconstruction\cite{joy2016ancestral} have been performed.\cite{collen2012evolution} However, an approach based Statistical Data Science principles may shed further light on the evolution of echolocation in bats, without relying heavily on domain specific knowledge.
+ 
+\subsection{Literature review}
+
+Echolocation, or biosonar, is a process whereby sound is produced and the echoes that return from objects are used to perceive the environment.\cite{jones2005echolocation} Animals that use echolocation include bats, toothed whales, some birds, and some shrews and rats.\cite{jones2005echolocation} Bat echolocation calls, ranging from 9 to 212 kHz, differ from those of other echolocators in that they are often laryngeal, complex, and of a relatively long duration.\cite{thomas2004echolocation} The evolutionary dynamics that resulted in bats being nocturnal, flying echolocators have resulted in a wide variety of call structures across species.\cite{jones2006evolution} Echolocation in bats demonstrates convergent evolution, and bat species have been arranged in `guilds' based on habitat and foraging strategy, with similar call structures observed within a `guild'. \cite{aldridge1987morphology} \cite{neuweiler1990auditory} \cite{schnitzler2001echolocation} However, it has been acknowledged that ``echolocation signals reflect a phylogenetically determined basic call structure shaped by specific ecological conditions.''\cite{schnitzler2004evolution} Ancestral Reconstruction is a key aspect of understanding the variation is call structure that is due to phylogenetic relationships between species. 
+
+Ancestral Reconstruction involves the extrapolation back in time from measured characteristics of current populations to the ancestral state, the estimate of the same characteristic in common ancestors.\cite{joy2016ancestral} Effective ancestral reconstruction relies on an accurate model for evolution, that is, both the dynamic evolutionary process and the phylogenetic relationships between species. \cite{joy2016ancestral} There have been maximum parsimony\cite{fitch1971toward}, maximum likelihood\cite{pupko2000fast}, and Bayesian\cite{pagel2004bayesian} approaches taken to ancestral reconstruction.
+
+Other studies have considered bat echolocation calls for ancestral reconstruction. \cite{fenton1995signal} \cite{collen2012evolution}. Fenton\cite{fenton1995signal} hypothesised that early bats used short, broadband clicks for echolocation based on the observation that this is the method of echolocating employed by all animals except bats. Collen\cite{collen2012evolution} proposed instead that early bats used short, multi-harmonic, narrowband laryngeal calls for echolocation, based on a comparative analysis of echolocation call parameters. An approach to the reconstruction of early bat echolocation calls which is not so selective in the information it employs may shed further light on this topic. Gaussian Process Regression on Phylogenies for function valued traits provide a promising path to explore.\cite{jones2013evolutionary} Jones \& Moriarty proposed an extension to Gaussian Process Regression\cite{rasmussen2006gaussian} which allowed the generalisation of Ornstein-Uhlenbeck\cite{uhlenbeck1930theory} models of continuous-time character evolution for traits considered as functional data objects,\cite{ramsay2006functional} through a phylogeny. This study represents an effort to apply these methods to the ancestral reconstruction of bat echolocation calls.
+
+\section{Methods}
+
+\subsection{Recordings}
+
+Describe the Data. Get started with notation. Worth looking at vassilos stuff here.
+
+\subsection{Power spectral Density}
+
+Define PSD, get references, Fourier transform of the data.
+
+\subsection{Functional Data Objects}
+
+Justification of PSD as a functional data object, smoothing, regularisation etc.
+
+\subsection{Component Analysis}
+
+PCA and ICA execution. Tuning of components.
+
+\subsection{Phylogenetic Gaussian Processes}
+
+Gaussian Processes, Matern / OU kernel, interpretation of parameters
+
+proceedings 
+
+\section{Results}
+
+\subsection{Simulation Study}
+
+given hypers, what happens along the given tree
+
+\subsection{Mexican Bat Echolocation call Dataset}
+
+What happens when the method is applied to the Mexican bat calls?
+
+\section{Discussion}
+
+\subsection{What do we learn from this?}
+
+Phylogenetic / Non-phylogenetic Signal. Not just noise. Although speculative and probably limited going back to root may be useful for more recent ancestors.
+
+\subsection{Future Work in this Area}
+
+Implement for Spectrograms, produce some recordings.
+
+
+\bibliographystyle{ws-rv-van}
+\bibliography{../BatBiblio}
+
+%\blankpage
+%\printindex[aindx]                 % to print author index
+%\printindex                         % to print subject index
+
+\end{document} 
