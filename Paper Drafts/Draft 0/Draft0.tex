@@ -7,8 +7,8 @@
 %%              D. Rajesh Babu, <rajesh@wspc.com.sg>                    %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
-\documentclass{ws-rv9x6}
+\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
+%\documentclass{ws-rv9x6}
 \usepackage{subfigure}   % required only when side-by-side / subfigures are used
 \usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
 \usepackage{ws-rv-van}   % numbered citation & references (default)
@@ -36,7 +36,6 @@ The stated aim of the Statistical Data Science workshop jointly organised by the
 \body
 
 %\tableofcontents
-
 \section{Introduction}
 
 \subsection{Motivation}
@@ -56,7 +55,78 @@ Ancestral Reconstruction involves the extrapolation back in time from measured c
 
 Other studies have considered bat echolocation calls for ancestral reconstruction. \cite{fenton1995signal} \cite{collen2012evolution}. Fenton\cite{fenton1995signal} hypothesised that early bats used short, broadband clicks for echolocation based on the observation that this is the method of echolocating employed by all animals except bats. Collen\cite{collen2012evolution} proposed instead that early bats used short, multi-harmonic, narrowband laryngeal calls for echolocation, based on a comparative analysis of echolocation call parameters. An approach to the reconstruction of early bat echolocation calls which is not so selective in the information it employs may shed further light on this topic. Gaussian Process Regression on Phylogenies for function valued traits provide a promising path to explore.\cite{jones2013evolutionary} Jones \& Moriarty proposed an extension to Gaussian Process Regression\cite{rasmussen2006gaussian} which allowed the generalisation of Ornstein-Uhlenbeck\cite{uhlenbeck1930theory} models of continuous-time character evolution for traits considered as functional data objects,\cite{ramsay2006functional} through a phylogeny. This study represents an effort to apply these methods to the ancestral reconstruction of bat echolocation calls.
 
+\begin{figure}[ht]
+	\centerline{
+		\subfigure[Broadband sweep, multiharmonic - \textit{Antrozous pallidus}]
+		{\includegraphics[width=1.5in]{../Figures/anpaSpectrogram.eps}\label{fig::anpa}}
+		\hspace*{4pt}
+		\subfigure[Narrowband, multiharmonic - \textit{Balantiopteryx plicata
+			}]
+		{\includegraphics[width=1.5in]{../Figures/baplSpectrogram.eps}\label{fig::bapl}}
+	}
+	\centerline{
+		\subfigure[Broadband sweep, single harmonic - \textit{Myotis yumanensis}]
+		{\includegraphics[width=1.5in]{../Figures/myyuSpectrogram.eps}\label{fig::myyu}}
+		\hspace*{4pt}
+		\subfigure[Constant frequency with broadband sweep - \textit{Pteronotus parnellii}]
+		{\includegraphics[width=1.5in]{../Figures/ptpaSpectrogram.eps}\label{fig::ptpa}}
+	}
+	\caption{Representative call spectrograms for some bat species, demonstrating echolocation call structures.}\label{fig::spectrogram}
+\end{figure}
+
 \section{Methods}
+
+\subsection{Data Description}
+
+The post processed echolocation call data accompanying Stathopoulos et al. \cite{stathopoulos2017bat} was used in this analysis. Echolocation calls were recorded across north and central Mexico with a Pettersson 1000x bat detector (Pettersson Elektronik AB, Uppsala, Sweden). Live trapped bats were measured and identified to species level using field keys.\cite{ceballos2005mamiferos} \cite{medellin2sanchez} Bats were recorded either while released from the hand or while tied to a zip line. The bat detector was set to record calls manually in real time, full spectrum at 500 kHz. 
+In total the dataset consists of 22 species in five families, 449 individual bats and 1814 individual echolocation call recordings.
+
+\begin{table}[ht]
+	\tbl{Echolocation Call Dataset Statistics}
+	{\begin{tabular}{@{}lcc@{}} \toprule
+			Species & Individuals & Calls \\ \colrule
+			Family: Emballonuridae & & \\
+			1 \textit{Balantiopteryx plicata} & 16 & 100 \\
+			\\
+			Family: Molossidae && \\
+			2 \textit{Nyctinomops femorosaccus} & 16 & 100 \\
+			3 \textit{Tadarida brasiliensis} & 49 & 100  \\
+			\\
+			Family: Vespertilionidae && \\
+			4 \textit{Antrozous pallidus} & 58 & 100 \\
+			5 \textit{Eptesicus fuscus} & 74 & 100 \\
+			6 \textit{Idionycteris phyllotis} & 6 & 100 \\
+			7 \textit{Lasiurus blossevillii} & 10 & 90 \\
+			8 \textit{Lasiurus cinereus} & 5 & 42 \\
+			9 \textit{Lasiurus xanthinus} & 8 & 100 \\
+			10 \textit{Myotis volans} & 8 & 100 \\
+			11 \textit{Myotis yumanensis} & 5 & 89 \\
+			12 \textit{Pipistrellus hesperus} & 85 & 100 \\
+			\\
+			Family: Mormoopidae && \\
+			13 \textit{Mormoops megalophylla} & 10 & 100 \\
+			14 \textit{Pteronotus davyi} & 8 & 100 \\
+			15 \textit{Pteronotus parnellii} & 23 & 100 \\
+			16 \textit{Pteronotus personatus} & 7 & 51 \\
+			\\
+			Family:Phyllostomidae && \\
+			17 \textit{Artibeus jamaicensis} & 11 & 82 \\
+			18 \textit{Desmodus rotundus} & 6 & 38 \\
+			19 \textit{Leptonycteris yerbabuenae} & 26 & 100 \\
+			20 \textit{Macrotus californicus} & 6 & 53 \\
+			21 \textit{Sturnira ludovici} & 8 & 51 \\
+			22 \textit{Sturnira lilium} & 4 & 20 \\
+			\botrule
+		\end{tabular}
+	}
+	\begin{tabnote}
+		$^{\text a}$Sample table footnote.
+	\end{tabnote}
+	\label{tab::dataset}
+\end{table}
+
+The 
+The echolocation call dataset used for this study is the 
 
 \subsection{Recordings}
 
