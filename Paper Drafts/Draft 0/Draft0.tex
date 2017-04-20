@@ -46,14 +46,6 @@ Bats form the second most speciose order of mammals, behind rodents, with over 1
 Bats are, for the most part, nocturnal, flying echolocators.\cite{kunz1994bats} Echolocation refers to the bats use of, typically ultrasonic\cite{corso1963bone}, calls and their echoes to forage and navigate in the night sky.\cite{griffin1944echolocation} Thus, bats leak information about themselves into the environment, allowing acoustic monitoring.\cite{pettorelli2013indicator}. Work towards the development of automatic acoustic monitoring algorithms for bats \cite{stathopoulos2017bat} \cite{walters2012continental} is ongoing. Similar algorithms have been developed for insects\cite{chesmore2004automated} and birds\cite{briggs2012acoustic}, reflecting the level of interest in bioacoustic monitoring.
 
 The growing database of bat call recordings \cite{collen2012evolution} also opens up other avenues for research. Bat echolocation calls are diverse and can generally be sorted into categories according to the duration, bandwidth and use of harmonics in the call.\cite{maltby20104} It has been observed that closely related species have similar call structures indicating that some of the variation is due to a shared evolutionary history.\cite{jones2006evolution} Comparative analysis of bat echolocation call parameters for ancestral reconstruction\cite{joy2016ancestral} have been performed.\cite{collen2012evolution} However, an approach based Statistical Data Science principles may shed further light on the evolution of echolocation in bats, without relying heavily on domain specific knowledge.
- 
-\subsection{Literature review}
-
-Echolocation, or biosonar, is a process whereby sound is produced and the echoes that return from objects are used to perceive the environment.\cite{jones2005echolocation} Animals that use echolocation include bats, toothed whales, some birds, and some shrews and rats.\cite{jones2005echolocation} Bat echolocation calls, ranging from 9 to 212 kHz, differ from those of other echolocators in that they are often laryngeal, complex, and of a relatively long duration.\cite{thomas2004echolocation} The evolutionary dynamics that resulted in bats being nocturnal, flying echolocators have resulted in a wide variety of call structures across species.\cite{jones2006evolution} Echolocation in bats demonstrates convergent evolution, and bat species have been arranged in `guilds' based on habitat and foraging strategy, with similar call structures observed within a `guild'. \cite{aldridge1987morphology} \cite{neuweiler1990auditory} \cite{schnitzler2001echolocation} However, it has been acknowledged that ``echolocation signals reflect a phylogenetically determined basic call structure shaped by specific ecological conditions.''\cite{schnitzler2004evolution} Ancestral Reconstruction is a key aspect of understanding the variation is call structure that is due to phylogenetic relationships between species. 
-
-Ancestral Reconstruction involves the extrapolation back in time from measured characteristics of current populations to the ancestral state, the estimate of the same characteristic in common ancestors.\cite{joy2016ancestral} Effective ancestral reconstruction relies on an accurate model for evolution, that is, both the dynamic evolutionary process and the phylogenetic relationships between species. \cite{joy2016ancestral} There have been maximum parsimony\cite{fitch1971toward}, maximum likelihood\cite{pupko2000fast}, and Bayesian\cite{pagel2004bayesian} approaches taken to ancestral reconstruction.
-
-Other studies have considered bat echolocation calls for ancestral reconstruction. \cite{fenton1995signal} \cite{collen2012evolution}. Fenton\cite{fenton1995signal} hypothesised that early bats used short, broadband clicks for echolocation based on the observation that this is the method of echolocating employed by all animals except bats. Collen\cite{collen2012evolution} proposed instead that early bats used short, multi-harmonic, narrowband laryngeal calls for echolocation, based on a comparative analysis of echolocation call parameters. An approach to the reconstruction of early bat echolocation calls which is not so selective in the information it employs may shed further light on this topic. Gaussian Process Regression on Phylogenies for function valued traits provide a promising path to explore.\cite{jones2013evolutionary} Jones \& Moriarty proposed an extension to Gaussian Process Regression\cite{rasmussen2006gaussian} which allowed the generalisation of Ornstein-Uhlenbeck\cite{uhlenbeck1930theory} models of continuous-time character evolution for traits considered as functional data objects,\cite{ramsay2006functional} through a phylogeny. This study represents an effort to apply these methods to the ancestral reconstruction of bat echolocation calls.
 
 \begin{figure}[ht]
 	\centerline{
@@ -61,7 +53,7 @@ Other studies have considered bat echolocation calls for ancestral reconstructio
 		{\includegraphics[width=1.5in]{../Figures/anpaSpectrogram.eps}\label{fig::anpa}}
 		\hspace*{4pt}
 		\subfigure[Narrowband, multiharmonic - \textit{Balantiopteryx plicata
-			}]
+		}]
 		{\includegraphics[width=1.5in]{../Figures/baplSpectrogram.eps}\label{fig::bapl}}
 	}
 	\centerline{
@@ -73,61 +65,69 @@ Other studies have considered bat echolocation calls for ancestral reconstructio
 	}
 	\caption{Representative call spectrograms for some bat species, demonstrating echolocation call structures.}\label{fig::spectrogram}
 \end{figure}
+ 
+\subsection{Literature review}
+
+Echolocation, or biosonar, is a process whereby sound is produced and the echoes that return from objects are used to perceive the environment.\cite{jones2005echolocation} Animals that use echolocation include bats, toothed whales, some birds, and some shrews and rats.\cite{jones2005echolocation} Bat echolocation calls, ranging from 9 to 212 kHz, differ from those of other echolocators in that they are often laryngeal, complex, and of a relatively long duration.\cite{thomas2004echolocation} The evolutionary dynamics that resulted in bats being nocturnal, flying echolocators have resulted in a wide variety of call structures across species.\cite{jones2006evolution} Echolocation in bats demonstrates convergent evolution, and bat species have been arranged in `guilds' based on habitat and foraging strategy, with similar call structures observed within a `guild'. \cite{aldridge1987morphology} \cite{neuweiler1990auditory} \cite{schnitzler2001echolocation} However, it has been acknowledged that ``echolocation signals reflect a phylogenetically determined basic call structure shaped by specific ecological conditions.''\cite{schnitzler2004evolution} Ancestral Reconstruction is a key aspect of understanding the variation is call structure that is due to phylogenetic relationships between species. 
+
+Ancestral Reconstruction involves the extrapolation back in time from measured characteristics of current populations to the ancestral state, the estimate of the same characteristic in common ancestors.\cite{joy2016ancestral} Effective ancestral reconstruction relies on an accurate model for evolution, that is, both the dynamic evolutionary process and the phylogenetic relationships between species. \cite{joy2016ancestral} There have been maximum parsimony\cite{fitch1971toward}, maximum likelihood\cite{pupko2000fast}, and Bayesian\cite{pagel2004bayesian} approaches taken to ancestral reconstruction.
+
+Other studies have considered bat echolocation calls for ancestral reconstruction. \cite{fenton1995signal} \cite{collen2012evolution}. Fenton\cite{fenton1995signal} hypothesised that early bats used short, broadband clicks for echolocation based on the observation that this is the method of echolocating employed by all animals except bats. Collen\cite{collen2012evolution} proposed instead that early bats used short, multi-harmonic, narrowband laryngeal calls for echolocation, based on a comparative analysis of echolocation call parameters. An approach to the reconstruction of early bat echolocation calls which is not so selective in the information it employs may shed further light on this topic. Gaussian Process Regression on Phylogenies for function valued traits provide a promising path to explore.\cite{jones2013evolutionary} Jones \& Moriarty proposed an extension to Gaussian Process Regression\cite{rasmussen2006gaussian} which allowed the generalisation of Ornstein-Uhlenbeck\cite{uhlenbeck1930theory} models of continuous-time character evolution for traits considered as functional data objects,\cite{ramsay2006functional} through a phylogeny. This study represents an effort to apply these methods to the ancestral reconstruction of bat echolocation calls.
 
 \section{Methods}
 
 \subsection{Data Description}
 
 The post processed echolocation call data accompanying Stathopoulos et al. \cite{stathopoulos2017bat} was used in this analysis. Echolocation calls were recorded across north and central Mexico with a Pettersson 1000x bat detector (Pettersson Elektronik AB, Uppsala, Sweden). Live trapped bats were measured and identified to species level using field keys.\cite{ceballos2005mamiferos} \cite{medellin2sanchez} Bats were recorded either while released from the hand or while tied to a zip line. The bat detector was set to record calls manually in real time, full spectrum at 500 kHz. 
-In total the dataset consists of 22 species in five families, 449 individual bats and 1814 individual echolocation call recordings.
+In total the dataset consists of 22 species in five families, 449 individual bats and 1816 individual echolocation call recordings.
 
 \begin{table}[ht]
 	\tbl{Echolocation Call Dataset Statistics}
-	{\begin{tabular}{@{}lcc@{}} \toprule
-			Species & Individuals & Calls \\ \colrule
-			Family: Emballonuridae & & \\
-			1 \textit{Balantiopteryx plicata} & 16 & 100 \\
+	{\begin{tabular}{@{}lccc@{}} \toprule
+			Species & Key & Individuals & Calls \\ \colrule
+			Family: Emballonuridae &&& \\
+			1 \textit{Balantiopteryx plicata} & Bapl & 16 & 100 \\
 			\\
-			Family: Molossidae && \\
-			2 \textit{Nyctinomops femorosaccus} & 16 & 100 \\
-			3 \textit{Tadarida brasiliensis} & 49 & 100  \\
+			Family: Molossidae &&& \\
+			2 \textit{Nyctinomops femorosaccus} & Nyfe & 16 & 100 \\
+			3 \textit{Tadarida brasiliensis} & Tabr & 49 & 100  \\
 			\\
-			Family: Vespertilionidae && \\
-			4 \textit{Antrozous pallidus} & 58 & 100 \\
-			5 \textit{Eptesicus fuscus} & 74 & 100 \\
-			6 \textit{Idionycteris phyllotis} & 6 & 100 \\
-			7 \textit{Lasiurus blossevillii} & 10 & 90 \\
-			8 \textit{Lasiurus cinereus} & 5 & 42 \\
-			9 \textit{Lasiurus xanthinus} & 8 & 100 \\
-			10 \textit{Myotis volans} & 8 & 100 \\
-			11 \textit{Myotis yumanensis} & 5 & 89 \\
-			12 \textit{Pipistrellus hesperus} & 85 & 100 \\
+			Family: Vespertilionidae &&& \\
+			4 \textit{Antrozous pallidus} & Anpa & 58 & 100 \\
+			5 \textit{Eptesicus fuscus} & Epfu & 74 & 100 \\
+			6 \textit{Idionycteris phyllotis} & Idph & 6 & 100 \\
+			7 \textit{Lasiurus blossevillii} & Labl & 10 & 90 \\
+			8 \textit{Lasiurus cinereus} & Laci & 5 & 42 \\
+			9 \textit{Lasiurus xanthinus} & Laxa & 8 & 100 \\
+			10 \textit{Myotis volans} & Myvo & 8 & 100 \\
+			11 \textit{Myotis yumanensis} & Myyu & 5 & 89 \\
+			12 \textit{Pipistrellus hesperus} & Pihe & 85 & 100 \\
 			\\
-			Family: Mormoopidae && \\
-			13 \textit{Mormoops megalophylla} & 10 & 100 \\
-			14 \textit{Pteronotus davyi} & 8 & 100 \\
-			15 \textit{Pteronotus parnellii} & 23 & 100 \\
-			16 \textit{Pteronotus personatus} & 7 & 51 \\
+			Family: Mormoopidae &&& \\
+			13 \textit{Mormoops megalophylla} & Mome & 10 & 100 \\
+			14 \textit{Pteronotus davyi} & Ptda & 8 & 100 \\
+			15 \textit{Pteronotus parnellii} & Ptpa & 23 & 100 \\
+			16 \textit{Pteronotus personatus} & Ptpe & 7 & 51 \\
 			\\
-			Family:Phyllostomidae && \\
-			17 \textit{Artibeus jamaicensis} & 11 & 82 \\
-			18 \textit{Desmodus rotundus} & 6 & 38 \\
-			19 \textit{Leptonycteris yerbabuenae} & 26 & 100 \\
-			20 \textit{Macrotus californicus} & 6 & 53 \\
-			21 \textit{Sturnira ludovici} & 8 & 51 \\
-			22 \textit{Sturnira lilium} & 4 & 20 \\
+			Family:Phyllostomidae &&& \\
+			17 \textit{Artibeus jamaicensis} & Arja & 11 & 82 \\
+			18 \textit{Desmodus rotundus} & Dero & 6 & 38 \\
+			19 \textit{Leptonycteris yerbabuenae} & Leye & 26 & 100 \\
+			20 \textit{Macrotus californicus} & Maca & 6 & 53 \\
+			21 \textit{Sturnira ludovici} & Stlu & 8 & 51 \\
+			22 \textit{Sturnira lilium} & Stli & 4 & 20 \\
 			\botrule
 		\end{tabular}
 	}
-	\begin{tabnote}
-		$^{\text a}$Sample table footnote.
-	\end{tabnote}
 	\label{tab::dataset}
 \end{table}
 
-The 
-The echolocation call dataset used for this study is the 
+Phylogenetic relationships between species are described and dated according to the Bat super-tree produced by Collen.\cite{collen2012evolution} 
 
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.9\textwidth]{../Figures/Phylogeny.eps}
+\end{figure}
 \subsection{Recordings}
 
 Describe the Data. Get started with notation. Worth looking at vassilos stuff here.
