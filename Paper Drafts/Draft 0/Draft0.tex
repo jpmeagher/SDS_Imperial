@@ -74,6 +74,22 @@ Ancestral Reconstruction involves the extrapolation back in time from measured c
 
 Other studies have considered bat echolocation calls for ancestral reconstruction. \cite{fenton1995signal} \cite{collen2012evolution}. Fenton\cite{fenton1995signal} hypothesised that early bats used short, broadband clicks for echolocation based on the observation that this is the method of echolocating employed by all animals except bats. Collen\cite{collen2012evolution} proposed instead that early bats used short, multi-harmonic, narrowband laryngeal calls for echolocation, based on a comparative analysis of echolocation call parameters. An approach to the reconstruction of early bat echolocation calls which is not so selective in the information it employs may shed further light on this topic. Gaussian Process Regression on Phylogenies for function valued traits provide a promising path to explore.\cite{jones2013evolutionary} Jones \& Moriarty proposed an extension to Gaussian Process Regression\cite{rasmussen2006gaussian} which allowed the generalisation of Ornstein-Uhlenbeck\cite{uhlenbeck1930theory} models of continuous-time character evolution for traits considered as functional data objects,\cite{ramsay2006functional} through a phylogeny. This study represents an effort to apply these methods to the ancestral reconstruction of bat echolocation calls.
 
+\subsection{The evolution of function valued traits}
+
+Bat echolocation calls can be described as 'function valued' traits.\cite{meyer2005up} In this context, 'function valued' refers to traits measured along a continuous scale, which can then be represented by a continuous mathematical function. Data of this nature can be viewed as functional data objects.\cite{ramsay2006functional} The Functional Phylogenies Group\cite{group2012phylogenetic} argue the case for performing evolutionary inference, including ancestral reconstruction, on function valued traits, with a particular focus on the evolution of linguistic speech sounds. They propose performing inference on a functional representation of the speech sound itself, by extending Gaussian Process Regression\cite{rasmussen2006gaussian} to take advantage of the tree structure of phylogenetic relationships.\cite{jones2013evolutionary}. 
+
+Phylogenetic Gaussian Process Regression (PGPR), as developed by Jones \& Moriarty,\cite{jones2013evolutionary} extends Ornstein-Uhlenbeck\cite{uhlenbeck1930theory} models for continuous-time character evolution to function valued traits. In comparative studies of genetic data the O-U model is used to describe stabilising selection with random genetic drift, the notion that traits have some optimal value, around which they vary.\cite{hansen1997stabilizing} The PGPR is based on a kernel with 3 hyperparameters. Phylogenetic noise and length scale hyperparameters govern the correlation between nodes on a tree due to the phylogeny, while non-phylogenetic noise accounts for other sources of variation. Estimating these hyperparameters allows posterior distributions for traits at internal nodes to be constructed. In this way estimates for the ancestral state can be made. This model does not require that variance of the trait is homogenous across the whole function space. By defining a set of deterministic basis functions, combinations of which can be used to describe the observed trait functions, the variance of traits can be modelled to vary over the function space. An implementation of this method on simulated data is given by Hajipantelis.\cite{hadjipantelis2013function} 
+
+\subsection{Paper Description}
+
+In a similar manner to the representation of speech sounds as spectrograms,\cite{pigoli2015analysis} bat echolocation calls will be represented by their Energy Spectral Density\cite{antoniou2006digital} (ESD). The ESD, the energy of a signal as a function of a frequency, provides a straightforward characterisation from which a PGPR can be implemented. 
+
+Using a synthetic dataset based on the bat phylogeny the conditions for an effective implementation of PGPR will be demonstrated. 
+
+PGPR will then be implemented for the set of bat calls and posterior distributions of ESD estimated.
+
+Spectral representations of the calls will be described, the implementation of PGPR. Independent Component Analysis. Simulations study to demonstrate the PGPR can work for this dataset. Application to Bats.
+
 \section{Methods}
 
 \subsection{Data Description}
@@ -125,20 +141,41 @@ In total the dataset consists of 22 species in five families, 449 individual bat
 Phylogenetic relationships between species are described and dated according to the Bat super-tree produced by Collen.\cite{collen2012evolution} 
 
 \begin{figure}
-	\centering
+	\centering	q
 	\includegraphics[width= 0.9\textwidth]{../Figures/Phylogeny.eps}
 \end{figure}
-\subsection{Recordings}
 
-Describe the Data. Get started with notation. Worth looking at vassilos stuff here.
+\subsection{From Echolocation Call recordings to Spectral Curves}
 
-\subsection{Power spectral Density}
+Echolocation calls can be considered to be continuous, non-periodic, pulse signals which are a function of time \(x(t)\).
 
-Define PSD, get references, Fourier transform of the data.
+The Fourier Transform of a signal is an expression of the signal in the frequency domain, that is, as a function of frequency. It is given by 
 
-\subsection{Functional Data Objects}
+\[
+X(f) = \int_{-\infty}^{\infty} x(t) e^{-2\pi ft} dt.
+\]
 
-Justification of PSD as a functional data object, smoothing, regularisation etc.
+The energy of the signal is given by 
+
+\[E = \int_{-\infty}^{\infty} |x(t)|^2 dt = \int_{-\infty}^{\infty} |X(f)|^2 df,\]
+
+by Parseval's Theorem.
+
+The ESD is then \(|X(f)|^2\). This is a representation of a sound and so it is appropriate to scale this to a decibel scale. Not also that \(|X(f)|^2\) is a periodic function and symmetric around 0. Given that bat echolocation calls range from \(9 - 212\)kHz we are interested in \(S(f) = log_{10} |X(f)|^2, f \in [9, 212] \). This can then be treated as a functional data object.
+
+By treating \(S(f)\) as a functional data object it is treated as a set of noisy realisations taken of a smooth underlying curve. Estimating this underlying curve is performed by smoothing. Another aspect of functional data analysis is registration, in this case it would consist of separating out phase and amplitude variation. As the energy at specific frequencies is of interest here, registration along the frequency axis is not appropriate. However the level of the amplitude depends on factors such as the distance of the bat from the microphone while being recorded. This variation is not interesting. Thus registration on the amplitude axis is appropriate. thus all curves are registered such that the amplitude lies on the interval \([0,1]\). 
+
+Once smoothed and registered the curves are sampled from at every kHz. These Spectral curves are the functions to be analysed in the comparative analysis.
+
+\subsection{Phylogenetic Gaussian Process Regression for spatially inhomogenous data}
+
+Some stuff about Gaussian Process Regression
+
+Extension of Gaussian Processes to Phylogenetic Data
+
+Extension to spatially inhomogenous data.
+
+The theoretical results presented by Jones \& Moriarty\cite{jones2013evolutionary} rely on two assumptions about the data
 
 \subsection{Component Analysis}
 
