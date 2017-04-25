@@ -167,7 +167,34 @@ By treating \(S(f)\) as a functional data object it is treated as a set of noisy
 
 Once smoothed and registered the curves are sampled from at every kHz. These Spectral curves are the functions to be analysed in the comparative analysis.
 
-\subsection{Phylogenetic Gaussian Process Regression for spatially inhomogenous data}
+\subsection{Phylogenetic Gaussian Processes}
+
+Given a dataset, \(X\), of \(N\) observations of an input vector \(\mathbf{x}\) associated with a vector of response variables \(\mathbf{y}\), a Gaussian Process model assumes that the relationship between \(\mathbf{x}\) and \(y\) is governed by a multivariate Gaussian distribution. Formally, a Gaussian Process is a collection of random variables, any finite number of which have a joint Gaussian distribution.\cite{rasmussen2006gaussian} 
+
+In a function-space view of Gaussian Processes, a Gaussian Process \(f(\cdot)\) is completely characterised by its mean and covariance functions. For simplicity, the mean function can be set such that \(m(\mathbf{x}) = \mathbf{E} [f(\mathbf{x})] = 0\). The covariance function, defined by a kernel \(k(\mathbf{x}, \mathbf{x}') = \mathbf{E}[(f(\mathbf{x}) - m(\mathbf{x}))(f(\mathbf{x'}) - m(\mathbf{x'}))] \), describes the relationship between coordinates within the input space. Thus, setting \(y_i = f(\mathbf{x}_i)\), models the vector of response variables as a multivariate Gaussian distribution, \(\mathbf{y} \sim \mathcal{N}(0, K)\), where \(K = K(X, X)\) is the covariance matrix given by \(K_{ij} = K(X, X)_{ij} = k(\mathbf{x}_i, \mathbf{x}_j)\). 
+
+Once a Gaussian Process has been fitted for the observed data, a conditional distribution for unobserved points, \(X_*\), on the input space can be estimated. The key predictive equations for Gaussian Process Regression are
+\[
+\mathbf{f}_* | X, \mathbf{y}, X_* \sim \mathcal{N}(\bar{\mathbf{f}_*}, cov(\mathbf{f}_*))
+\]
+where
+\[
+\bar{\mathbf{f}_*} \equiv \mathbf{E} [\mathbf{f}_* | X, \mathbf{y}, X_*] = K(X_*, X) (K)^{-1} \mathbf{y}
+\]
+and
+\[
+cov(\mathbf{f}_*) = K(X_*, K_*) - K(X_*, X) (K)^{-1} K(X, X_*).
+\]
+
+Thus the key aspect of Gaussian Process Regression is the definition of an appropriate kernel, which is context dependant. 
+
+The Gaussian Process framework provides a flexible general approach to regression problems, a framework which Jones \& Moriarty extended to phylogenteic inference for function valued traits. Suppose the phylogenetic tree, \(\mathbf{T}\), denotes the relationships between the observed data in evolutionary time. The trait itself exists in some function space \(\mathcal{X}\) and so each observation is indexed by \((\mathbf{x}, \mathbf{t})\), where \(\mathbf{x}\) describes the observed functional trait, and \(\mathbf{t}\) the position of the observation in \(\mathbf{T}\), evolutionary time. A Phylogenetic Gaussian process can then be defined by a suitable kernel. The form of this kernel is given by Jones \& Moriarty.\cite{jones2013evolutionary}
+
+The results are presented for a Phylogenetic Gaussian Process subject to a number of simplifying assumptions. It is assumed that conditional on common ancestors in \(\mathbf{T}\) any two traits are independent. It is also assumed that marginal process of evolution, that is the path on \(\mathbf{T}\) from the root to any tip, is identical along all paths. Finally, it is also assumed that the marginal process is separable by evolutionary time and the function valued trait space.
+
+In order to fit a Phylogenetic Gaussian Process model with spatially inhomogenous variance, a set of basis functions must be defined. Intuitively, these basis functions should define `components' of the trait, each of which are subject to an independent univariate Phylogenetic Gaussian Process, which can be additively combined to model the trait at various points in evolutionary time. The cubICA\cite{blaschke2004cubica} implementation of Independent Components Analysis offers a method of estimating such a set of basis functions, referred to as components hereafter. 
+
+given by the Ornstein-Uhelenbeck process, 
 
 Some stuff about Gaussian Process Regression
 
