@@ -192,31 +192,60 @@ The Gaussian Process framework provides a flexible general approach to regressio
 
 The results are presented for a Phylogenetic Gaussian Process subject to a number of simplifying assumptions. It is assumed that conditional on common ancestors in \(\mathbf{T}\) any two traits are independent. It is also assumed that marginal process of evolution, that is the path on \(\mathbf{T}\) from the root to any tip, is identical along all paths. Finally, it is also assumed that the marginal process is separable by evolutionary time and the function valued trait space.
 
-In order to fit a Phylogenetic Gaussian Process model with spatially inhomogenous variance, a set of basis functions must be defined. Intuitively, these basis functions should define `components' of the trait, each of which are subject to an independent univariate Phylogenetic Gaussian Process, which can be additively combined to model the trait at various points in evolutionary time. The cubICA\cite{blaschke2004cubica} implementation of Independent Components Analysis offers a method of estimating such a set of basis functions, referred to as components hereafter. 
+In order to fit a Phylogenetic Gaussian Process model with spatially inhomogenous variance, a set of basis functions must be defined. Intuitively, these basis functions should define `components' of the trait, each of which are subject to an independent univariate Phylogenetic Gaussian Process, which can be additively combined to model the trait at various points in evolutionary time. The cubICA\cite{blaschke2004cubica} implementation of Independent Components Analysis offers a method of estimating such a set of basis functions, referred to as components hereafter.
 
-given by the Ornstein-Uhelenbeck process, 
+The implementation here models the Phylogenetic Gaussian process with an Ornstein-Uhlenbeck kernel, a special case of the Matern class of kernels, with additive gaussian noise. 
 
-Some stuff about Gaussian Process Regression
-
-Extension of Gaussian Processes to Phylogenetic Data
-
-Extension to spatially inhomogenous data.
-
-The theoretical results presented by Jones \& Moriarty\cite{jones2013evolutionary} rely on two assumptions about the data
-
-\subsection{Component Analysis}
-
-PCA and ICA execution. Tuning of components.
-
-\subsection{Phylogenetic Gaussian Processes}
-
-Gaussian Processes, Matern / OU kernel, interpretation of parameters
-
-proceedings 
+\[
+k(x, x) = phylogenetic + nonphylogenetic
+\]
+In this way the PGP can account for both  phylogenetic and non-phylogenetic aspects of the evolutionary process.
 
 \section{Results}
 
 \subsection{Simulation Study}
+
+a simulation study examining PGP for a random tree was performed for a random tree with 128 tips \cite{hadjipantelis2013function}. However the phylogenetic tree presented here is very different from that, having only 22 tips. In order to understand how effectively hyperparameters can be estimated for this OU process a simulation study of my own was performed.
+
+Each observation is associated with some tip on the phylogenetic tree, however we are not limited to a single observation at each tip. we are interested in the variation between species and so we can place multiple observations at each tip. Care was taken to ensure the dataset was balanced in some sense and so the same number of observations were taken from each tip.
+
+The object of this simulation study is to demonstrate the conditions required for type II maximum likelihood estimation to successfully estimate hyperparameters for a Phylogenetic Ornstein-Uhlenbeck Process.
+
+The Phylogenetic Ornsetin-Uhlenbeck Process kernel is
+\[
+k(x,x') = \sigma_p \exp \left( \frac{|x - x'|}{\ell} \right)  + \sigma_n
+\]
+where \(\sigma_p\) is the phylogenetic noise, \(\ell\) the phylogenetic length-scale, and \(sigma_n\) the non-phylogenetic noise.
+
+The key parameter here is \(\ell\). It can be easily shown that when \(\ell >> |x - x'|\) there is a high degree of correlation between process observations at \(x\) and \(x'\). When \(\ell << |x - x'|\) there is little correlation and the process becomes indistinguishable from white noise. With this in mind fix \(\sigma_p = 1\) and \(\sigma_n = 1\).
+
+Investigate the accuracy for the process over the tree for \(\ell = \{10, 25, 50, 100, 200\}\) considering \(n = \{1, 2, 4, 8\}\) observations at each tip of the tree.
+
+Create a dataframe storing the results of 1000 simulations for the vlaues of \(\ell, n \) of interest.
+
+In order to demonstrate the accuracy of type 2 MLE estimation  the mean estimatior(sample variance) of each hyperparameter is given below.
+
+\begin{table}[ht]
+	\tbl{Echolocation Call Dataset Statistics}
+	{\begin{tabular}{@{}rccccc@{}} \toprule
+			& \multicolumn{5}{c}{\(\ell\)} \\
+			& 10 & 20 & 50 & 100 & 200 \\ 
+			\colrule
+			\(n = 1\)  &&&& \\
+			\(2\)  &&&& \\
+			\(4\)  &&&& \\
+			\(8\)  &&&& \\
+			\botrule
+		\end{tabular}
+	}
+	\label{tab::simulation}
+\end{table}
+
+More observations better than less.
+
+Exponential distribution of length scale.
+
+Some pictures, pairs plot maybe. Compare different sample sizes, distributions. Note plots cannot use colour.
 
 given hypers, what happens along the given tree
 

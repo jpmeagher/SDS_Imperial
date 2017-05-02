@@ -1,0 +1,34 @@
+---
+title: "Simulation Study for Statistical Data Science Conference"
+author: "J.P. Meagher"
+date: "1 May 2017"
+output: html_document
+---
+
+The object of this simulation study is to demonstrate the conditions required for type II maximum likelihood estimation to successfully estimate hyperparameters for a Phylogenetic Ornstein-Uhlenbeck Process.
+
+The Phylogenetic Ornsetin-Uhlenbeck Process kernel is
+\[
+k(x,x') = \sigma_p \exp \left( \frac{|x - x'|}{\ell} \right)  + \sigma_n
+\]
+where \(\sigma_p\) is the phylogenetic noise, \(\ell\) the phylogenetic length-scale, and \(sigma_n\) the non-phylogenetic noise.
+
+The key parameter here is \(\ell\). It can be easily shown that when \(\ell >> |x - x'|\) there is a high degree of correlation between process observations at \(x\) and \(x'\). When \(\ell << |x - x'|\) there is little correlation and the process becomes indistinguishable from white noise. With this in mind fix \(\sigma_p = 1\) and \(\sigma_n = 1\).
+
+Investigate the accuracy for the process over the tree for \(\ell = \{10, 25, 50, 100, 200\}\) considering \(n = \{1, 2, 4, 8\}\) observations at each tip of the tree
+
+```{r}
+library(sdsBAT)
+
+n <- 1
+l <- 10
+
+tree <- expand_tree(phylogeny, n)
+sim_10_1 <- pou_simulation_study(log(c(1,l,1)), tree, 100, logl_function = pou_logl_fast, optim_function = 'uobyqa', upper_initialisation = c(2, 150, 2), n_restarts = 5)
+
+pou_simulation_study
+
+pou_simulation_study(log(c(1,10,1)), phylogeny, 10, n_restarts = 5)
+
+```
+
