@@ -15,20 +15,42 @@ where \(\sigma_p\) is the phylogenetic noise, \(\ell\) the phylogenetic length-s
 
 The key parameter here is \(\ell\). It can be easily shown that when \(\ell >> |x - x'|\) there is a high degree of correlation between process observations at \(x\) and \(x'\). When \(\ell << |x - x'|\) there is little correlation and the process becomes indistinguishable from white noise. With this in mind fix \(\sigma_p = 1\) and \(\sigma_n = 1\).
 
-Investigate the accuracy for the process over the tree for \(\ell = \{10, 25, 50, 100, 200\}\) considering \(n = \{1, 2, 4, 8\}\) observations at each tip of the tree
+Investigate the accuracy for the process over the tree for \(\ell = \{10, 25, 50, 100, 200\}\) considering \(n = \{1, 2, 4, 8\}\) observations at each tip of the tree.
 
-```{r}
+Create a dataframe storing the results of 1000 simulations for the vlaues of \(\ell, n \) of interest. 
+
+Note that `uobyqa()` offers the fastest optimisation method, `'Nelder-Mead'` and `'BFGS'` are roughly comparable to each other and only slightly slower, while `'CG'` is far slower. I will use `uobyqa` with 5 restarts.
+
+5 samples at each valeue take about 23 seconds, should take just over an hour to get the 1000 samples I want.
+
+```{r, cache=TRUE}
 library(sdsBAT)
+set.seed(7)
 
-n <- 1
-l <- 10
+n <- c(1, 2, 4, 8)
+l <- c(10, 25, 50, 100, 200)
+N <- 1000L
 
-tree <- expand_tree(phylogeny, n)
-sim_10_1 <- pou_simulation_study(log(c(1,l,1)), tree, 100, logl_function = pou_logl_fast, optim_function = 'uobyqa', upper_initialisation = c(2, 150, 2), n_restarts = 5)
+dummy <- matrix(1:20, nrow = length(n), ncol = length(l))
+rownames(dummy) <- c('n.1', 'n.2', 'n.4', 'n.8'); colnames(dummy) <- c('l.10', 'l.25', 'l.50', 'l.100', 'l.200')
 
-pou_simulation_study
+simulations <- data.frame(dummy)
+for(i in 1:length(n)){
+  for(j in 1:length(l)){
+    tree <- expand_tree(phylogeny, n[i])
+    experiment <- suppressMessages(pou_simulation_study(log(c(1,l[j],1)), tree, N, logl_function = pou_logl_fast, optim_function = 'uobyqa', upper_initialisation = c(2, 150, 2), n_restarts = 5))
+    simulations[[j]][[i]] <- list(experiment)
+  }
+}
 
-pou_simulation_study(log(c(1,10,1)), phylogeny, 10, n_restarts = 5)
-
+panel.hist <- function(x, ...)
+{
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(usr[1:2], 0, 1.5) )
+    h <- hist(x, plot = FALSE)
+    breaks <- h$breaks; nB <- length(breaks)
+    y <- h$counts; y <- y/max(y)
+    rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
+}
 ```
 
