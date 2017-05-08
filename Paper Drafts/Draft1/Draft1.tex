@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Review Volume (last updated on 20-4-2015)                            %%
+%% Trim Size: 9in x 6in                                                 %%
+%% Text Area: 7.35in (include runningheads) x 4.5in                     %%
+%% Main Text: 10 on 13pt                                                %%
+%% For support: Yolande Koh, <ykoh@wspc.com.sg>                         %%
+%%              D. Rajesh Babu, <rajesh@wspc.com.sg>                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
+%\documentclass{ws-rv9x6}
+\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+\usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
+\usepackage{ws-rv-van}   % numbered citation & references (default)
+%\usepackage{ws-index}   % to produce multiple indexes
+\makeindex
+%\newindex{aindx}{adx}{and}{Author Index}       %author index
+%\renewindex{default}{idx}{ind}{Subject Index}  %subject index
+
+\begin{document}
+
+\chapter[Ancestral Reconstruction of Bat Echolocation Calls]{Ancestral Reconstruction of Bat Echolocation Calls}\label{ra_ch1}
+
+\author[J.P. Meagher et al.]{J.P. Meagher\footnote{Author footnote.}}
+%\index[aindx]{Author, F.} % or \aindx{Author, F.}
+%\index[aindx]{Author, S.} % or \aindx{Author, S.}
+
+\address{Department of Statistics,\\
+University of Warwick, \\
+J.Meagher@Warwick.ac.uk\footnote{Affiliation footnote.}}
+
+\begin{abstract}
+ 
+\end{abstract}
+%\markright{Customized Running Head for Odd Page} % default is Chapter Title.
+\body
+
+%\tableofcontents
+\section{Introduction}
+
+Advances in technology allowing the precise quantification and storage of information about the world around us continues to drive the emergence of Data Science as a discipline distinct from both Statistics and Computer Science.
+
+Bioacoustics is one area of research generating vast quantities of data which also captures the imagination of the public, as evidenced by successful citizen science initiatives. \cite{allen2006citizen} \cite{pettorelli2013indicator} Bioacoustic techniques for biodiversity monitoring \cite{stathopoulos2017bat} \cite{damoulas2010bayesian} have the potential to make real policy impacts, particularly with regard to sustainable economic development and nature conservation.
+
+In the acoustic monitoring of biodiversity, bats (order \textit{Chiroptera}) are of particular interest. Bats have been identified as ideal bioindicators for monitoring climate change and habitat quality,\cite{jones2009carpe} largely because bats broadcast information about themselves into their environment in the form of echolocation calls.\cite{jones2005echolocation} The development of automatic acoustic monitoring algorithms for classifying species of bats \cite{stathopoulos2017bat} \cite{walters2012continental} means that large scale, non-invasive monitoring is becoming possible. 
+
+While monitoring bat populations provides useful information, understanding the root causes and effects of what is observed requires that the natural history of extant bat species is also well understood. Traits, such as call structure or body size, exhibited by particular bat species are linked to the bats interactions with its environment. \cite{aldridge1987morphology} Existing fossil records are of limited use in inferring the traits exhibited by ancestral bats, particularly with respect to echolocation calls for example. The reconstruction of ancestral traits relies heavily on the comparative analysis\cite{felsenstein2004inferring} of extant bat species. Thus, statistical data science techniques may be particularly useful for inferring the evolutionary dynamics and reconstructing ancestral states of echolocation in bats.
+
+Previous studies of bat echolocation calls for both classification \cite{walters2012continental} and ancestral reconstruction \cite{collen2012evolution} examined features of the call extracted from the spectrogram of the call. These, somewhat arbitrary, call features relied on significant domain knowledge to ensure they were sensibly selected and used. More recently however, general techniques for the classification of acoustic signals have been developed. \cite{stathopoulos2014bat} \cite{damoulas2010bayesian} These methods do not require, but can be augmented by, domain knowledge. General techniques for ancestral reconstruction of function-valued traits, such as speech sounds or echolocation calls, have been proposed \cite{group2012phylogenetic}. The study of bat echolocation calls offers an opportunity to examine the efficacy of these techniques.
+
+A function-valued trait is measured along some continuous scale, usually time, and can then be modelled as a continuous mathematical function using techniques for functional data analysis. \cite{ramsay2006functional} Jones \& Moriarty \cite{jones2013evolutionary} develop a method which extends Gaussian Process Regression \cite{rasmussen2006gaussian} to model the evolution of function-valued traits. 
+
+
+
+\bibliographystyle{ws-rv-van}
+\bibliography{../BatBiblio}
+
+%\blankpage
+%\printindex[aindx]                 % to print author index
+%\printindex                         % to print subject index
+
+\end{document} 

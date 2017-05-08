@@ -1,0 +1,83 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem{allen2006citizen}
+P.~E. Allen and C.~B. Cooper.
+\newblock Citizen science as a tool for biodiversity monitoring.
+\newblock  (2006).
+
+\bibitem{pettorelli2013indicator}
+N.~Pettorelli, J.~E. Baillie, and S.~M. Durant, Indicator bats program: a
+  system for the global acoustic monitoring of bats  (2013).
+
+\bibitem{stathopoulos2017bat}
+V.~Stathopoulos, V.~Zamora-Gutierrez, K.~E. Jones, and M.~Girolami, Bat
+  echolocation call identification for biodiversity monitoring: a probabilistic
+  approach, \emph{Journal of the Royal Statistical Society: Series C (Applied
+  Statistics)}  (2017).
+
+\bibitem{damoulas2010bayesian}
+T.~Damoulas, S.~Henry, A.~Farnsworth, M.~Lanzone, and C.~Gomes.
+\newblock Bayesian classification of flight calls with a novel dynamic time
+  warping kernel.
+\newblock In \emph{Machine Learning and Applications (ICMLA), 2010 Ninth
+  International Conference on}, pp. 424--429  (2010).
+
+\bibitem{jones2009carpe}
+G.~Jones, D.~S. Jacobs, T.~H. Kunz, M.~R. Willig, and P.~A. Racey, Carpe
+  noctem: the importance of bats as bioindicators, \emph{Endangered species
+  research}. {\bf 8}\penalty0 (1-2), \penalty0 93--115  (2009).
+
+\bibitem{jones2005echolocation}
+G.~Jones, Echolocation, \emph{Current Biology}. {\bf 15}\penalty0 (13),
+  \penalty0 R484--R488  (2005).
+
+\bibitem{walters2012continental}
+C.~L. Walters, R.~Freeman, A.~Collen, C.~Dietz, M.~Brock~Fenton, G.~Jones,
+  M.~K. Obrist, S.~J. Puechmaille, T.~Sattler, B.~M. Siemers, et~al., A
+  continental-scale tool for acoustic identification of european bats,
+  \emph{Journal of Applied Ecology}. {\bf 49}\penalty0 (5), \penalty0
+  1064--1074  (2012).
+
+\bibitem{aldridge1987morphology}
+H.~Aldridge and I.~Rautenbach, Morphology, echolocation and resource
+  partitioning in insectivorous bats, \emph{The Journal of Animal Ecology}. pp.
+  763--778  (1987).
+
+\bibitem{felsenstein2004inferring}
+J.~Felsenstein and J.~Felenstein, \emph{Inferring phylogenies}. vol.~2, Sinauer
+  associates Sunderland  (2004).
+
+\bibitem{collen2012evolution}
+A.~Collen.
+\newblock \emph{The evolution of echolocation in bats: a comparative approach}.
+\newblock PhD thesis, UCL (University College London)  (2012).
+
+\bibitem{stathopoulos2014bat}
+V.~Stathopoulos, V.~Zamora-Gutierrez, K.~Jones, and M.~Girolami.
+\newblock Bat call identification with gaussian process multinomial probit
+  regression and a dynamic time warping kernel.
+\newblock In \emph{Artificial Intelligence and Statistics}, pp. 913--921
+  (2014).
+
+\bibitem{group2012phylogenetic}
+T.~F.~P. Group, Phylogenetic inference for function-valued traits: speech sound
+  evolution, \emph{Trends in ecology \& evolution}. {\bf 27}\penalty0 (3),
+  \penalty0 160--166  (2012).
+
+\bibitem{ramsay2006functional}
+J.~O. Ramsay, \emph{Functional data analysis}. Wiley Online Library  (2006).
+
+\bibitem{jones2013evolutionary}
+N.~S. Jones and J.~Moriarty, Evolutionary inference for function-valued traits:
+  Gaussian process regression on phylogenies, \emph{Journal of The Royal
+  Society Interface}. {\bf 10}\penalty0 (78), \penalty0 20120616  (2013).
+
+\bibitem{rasmussen2006gaussian}
+C.~E. Rasmussen, Gaussian processes for machine learning  (2006).
+
+\end{thebibliography}
