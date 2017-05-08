@@ -30,7 +30,7 @@ University of Warwick, \\
 J.Meagher@Warwick.ac.uk\footnote{Affiliation footnote.}}
 
 \begin{abstract}
- 
+ Something something bats something evolution something ancestral reconstruction something magic.
 \end{abstract}
 %\markright{Customized Running Head for Odd Page} % default is Chapter Title.
 \body
@@ -55,6 +55,19 @@ This general approach to evolutionary inference for function-valued traits is im
 We are also interested in what specifically these models tell us about bats and the evolutionary dynamics driving the development of echolocation. What impact might these results have on our understanding of ancestral bats and their behaviour?
 
 This paper presents the early stages of our research and some preliminary results.
+
+\section{Functional Representation of Bat Echolocation Calls}
+
+A functional data object is generated when repeated measurements of some process are taken along a continuous scale, such as time. \cite{ramsay2006functional} These measurements can be thought of as representing points on a curve varies gradually and continuously. In the context of phylogenetics, these functional data objects are called function-valued traits. \cite{meyer2005up}
+
+Denote the \(m^{th}\) call recording of the \(l^{th}\) individual bat of species \(S\) by \(\{\tilde{x}_{lm}^S(n) : n = 0, \dots, N_{lm}^S - 1\}\). Thus \(\{\tilde{x}_{lm}^S(\cdot)\}\) is a noisy realisation of \(x^S(\cdot)\), the echolocation call generating process for species \(S\), observed at the time points given by \(\frac{n}{f_S}\), where \(f_S\) is the process sampling rate in samples per second (Hz).
+
+Call recordings themselves are in fact functional data objects, however modelling the phylogenetic relationships between \(\{\tilde{x}_{lm}^S(\cdot)\}\) and \(\{\tilde{x}_{l'm'}^{S'}(\cdot)\}\) directly implies that the processes are comparable at point \(n\). This is not the case for acoustic signals, which are sinusoidal and can vary in time without significantly altering the information carried. Thus some alternative functional representation of the signal is required.
+
+The discrete Fourier transform of the signal \(\{\tilde{x}_{l'm'}^{S'}(\cdot)\}\) is given by\[\tilde{X}_{lm}^S(k) = \sum_{n = 0}^{N_{lm}^S - 1} \tilde{x}_{lm}^{S}(n) e^{-i2\pi kn / N_{lm}^S }.\] The energy spectral density of this signal is the magnitude of the Fourier transform and so the log spectral density per second (in decibel) is therefore \[\tilde{\mathcal{E}}_{lm}^S(k) = 10 \log_{10} \left(\tilde{X}_{lm}^S(k)\right) / f_S.\]
+
+
+Bat echolocation calls can be considered as function-valued traits. A trait which is repeatedly 
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}

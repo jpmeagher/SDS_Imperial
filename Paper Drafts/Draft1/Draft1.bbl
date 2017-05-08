@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -93,5 +93,11 @@ R.~Lande, Natural selection and random genetic drift in phenotypic evolution,
 P.~Z. Hadjipantelis, N.~S. Jones, J.~Moriarty, D.~A. Springate, and C.~G.
   Knight, Function-valued traits in evolution, \emph{Journal of The Royal
   Society Interface}. {\bf 10}\penalty0 (82), \penalty0 20121032  (2013).
+
+\bibitem{meyer2005up}
+K.~Meyer and M.~Kirkpatrick, Up hill, down dale: quantitative genetics of
+  curvaceous traits, \emph{Philosophical Transactions of the Royal Society of
+  London B: Biological Sciences}. {\bf 360}\penalty0 (1459), \penalty0
+  1443--1455  (2005).
 
 \end{thebibliography}
