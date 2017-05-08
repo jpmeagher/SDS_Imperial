@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -79,5 +79,19 @@ N.~S. Jones and J.~Moriarty, Evolutionary inference for function-valued traits:
 
 \bibitem{rasmussen2006gaussian}
 C.~E. Rasmussen, Gaussian processes for machine learning  (2006).
+
+\bibitem{joy2016ancestral}
+J.~B. Joy, R.~H. Liang, R.~M. McCloskey, T.~Nguyen, and A.~F. Poon, Ancestral
+  reconstruction, \emph{PLoS Comput Biol}. {\bf 12}\penalty0 (7), \penalty0
+  e1004763  (2016).
+
+\bibitem{lande1976natural}
+R.~Lande, Natural selection and random genetic drift in phenotypic evolution,
+  \emph{Evolution}. pp. 314--334  (1976).
+
+\bibitem{hadjipantelis2013function}
+P.~Z. Hadjipantelis, N.~S. Jones, J.~Moriarty, D.~A. Springate, and C.~G.
+  Knight, Function-valued traits in evolution, \emph{Journal of The Royal
+  Society Interface}. {\bf 10}\penalty0 (82), \penalty0 20121032  (2013).
 
 \end{thebibliography}
