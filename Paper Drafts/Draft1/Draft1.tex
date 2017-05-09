@@ -69,15 +69,32 @@ This is not the case for acoustic signals, which are sinusoidal and can vary in 
 
 The discrete Fourier transform of the signal \(\{\tilde{x}_{l'm'}^{S'}(\cdot)\}\) is given by\[\tilde{X}_{lm}^S(k) = \sum_{n = 0}^{N_{lm}^S - 1} \tilde{x}_{lm}^{S}(n) e^{-i2\pi kn / N_{lm}^S }.\] 
 The energy spectral density of this signal is the magnitude of the Fourier transform and so the log energy spectral density per second (in decibel) is estimated by \[\tilde{\mathcal{E}}_{lm}^S(k) = 10 \log_{10} \left( \frac{|\tilde{X}_{lm}^S(k)|f_s}{N_{lm}^S}\right).\]
-The log energy spectral density estimate for the signal \(\tilde{x}_{lm}^S(\cdot)\), \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) is now considered to be a noisy estimate of the log energy spectral density for species \(S\), denoted \(\mathcal{E}^S(\cdot)\). The log energy spectral density is a periodic function of frequency which describes the energy of a signal at each frequency on the interval \([0, \frac{f_S}{2}]\). \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) has been mapped to the decibel scale and also scaled according to the length, in time, of \(\tilde{x}_{lm}^S(\cdot)\).\cite{antoniou2006digital} We have now mapped each echolocation call on the same scale and \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) is now comparable to \(\tilde{\mathcal{E}}_{l'm'}^{S'}(f)\) at frequency \(f\). In order for these representations to be considered as function-valued traits however, \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) must be smoothed such the call representation in the frequency domain varies gradually and continuously.
+The log energy spectral density estimate for the signal \(\tilde{x}_{lm}^S(\cdot)\), \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) is now considered to be a noisy estimate of the log energy spectral density for species \(S\), denoted \(\mathcal{E}^S(\cdot)\). The log energy spectral density is a periodic function of frequency which describes the energy of a signal at each frequency on the interval \(F = [0, \frac{f_S}{2}]\). \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) has been mapped to the decibel scale and also scaled according to the length, in time, of \(\tilde{x}_{lm}^S(\cdot)\).\cite{antoniou2006digital} We have now mapped each echolocation call on the same scale and \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) is now comparable to \(\tilde{\mathcal{E}}_{l'm'}^{S'}(f)\) at frequency \(f\). In order for these representations to be considered as function-valued traits however, \(\tilde{\mathcal{E}}_{lm}^S(\cdot)\) must be smoothed such the call representation in the frequency domain varies gradually and continuously.
 
 The smoothed log energy spectral density is estimated by smoothing splines where \[
 \mathcal{E}_{lm}^S(f) = \arg \min_{\mathcal{E}_{lm}^S(\cdot)} \int_{0}^{\frac{f_S}{2}}  \{ \tilde{\mathcal{E}}_{lm}^S(\cdot) - \mathcal{E}_{lm}^S(f) \}^2 df + \lambda \int_{0}^{\frac{f_S}{2}} \{ {\mathcal{E}_{lm}^{S}}'' (f)\}^2 df.
 \]
 The smoothing parameter \(\lambda\) is chosen using a generalised cross-validation procedure.\cite{friedman2001elements} \cite{citeR}
 
-We now have a functional representation of each bats echolocation call where the pairs of observations \(\{f, \mathcal{E}_{lm}^S(f)\}\) and \(\{f, \mathcal{E}_{l'm'}^(S')(f)\}\) are directly comparable. The function-valued traits can now be modelled for evolutionary inference.
- 
+We now have a functional representation of each bats echolocation call where the pairs of observations \(\{f, \mathcal{E}_{lm}^S(f)\}\) and \(\{f, \mathcal{E}_{l'm'}^{S'}(f)\}\) are directly comparable. The function-valued traits can now be modelled for evolutionary inference.
+
+\section{Gaussian Process Regression on Phylogenies} 
+
+The key innovation of Jones \& Moriarty\cite{jones2013evolutionary} in extending Gaussian Process Regression \cite{rasmussen2006gaussian} for use in evolutionary inference, was to replace the linear measure of distance between observations with a phylogenetic tree, denoted \(\mathbf{T}\). When this condition is imposed each of our observations \(\mathcal{E}^{S}(f)\) correspond to a point \((f, \mathbf{t})\) on the frequency-phylogeny \(F \times \mathbf{T}\). It is then by constructing a phylogenetic covariance function \(\Sigma_{\mathbf{T}}\left(\mathcal{E}^{S}(\cdot), \mathcal{E}^{S'}(\cdot)\right)\) that evolutionary inference can be performed.
+
+Deriving a tractable form of the phylogenetic covariance function requires some simplifying assumptions. Firstly, it is assumed that conditional on their common ancestors in the phylogenetic tree \(\mathbf{T}\), any two traits are statistically independent. 
+
+The second assumption is that the statistical relationship between a trait and any of it's descendants in \(\mathbf{T}\) is independent of the topology of \(\mathbf{T}\). That is to say that the underlying process driving evolutionary changes is identical along all individual branches of the tree. We call this underlying process along each branch the marginal process. The marginal process depends on the date of \(\mathbf{t}\), the distance between a point \(\mathbf{t} \in \mathbf{T}\) and the root of \(\mathbf{T}\), denoted \(t\). 
+
+Finally, we assume that the covariance function of the marginal process is separable over evolutionary time and the function-valued trait space. Thus, by defining the frequency only covariance function \(K(f,f')\) and the time only covariance function \(k(t,t')\) the covariance function of the marginal process is
+\[\Sigma\left((f,t), (f',t')\right) = K(f, f') k(t,t')\]
+
+Under these conditions, Jones \& Moriarty \cite{jones2013evolutionary} show that the phylogenetic covariance function is also separable, that is\[\Sigma_{\mathbf{T}}\left((f,\mathbf{t}), (f',\mathbf{t}')\right) = K(f, f') k_{\mathbf{T}}(\mathbf{t},\mathbf{t}').\] 
+
+It is also shown that for a phylogenetic Gaussian Process with this covariance function, \(Y\), there exists a set of \(n\) deterministic basis functions \(\phi_i: F \to \mathbf{R}\) and univariate Gaussian processes \(X_i\) for \(i = 1,\dots, n\) such that \[
+g(f, \mathbf{t}) = \sum_{i = 1}^{n} \phi_i(f) X_i(\mathbf{t})\] has the same distribution as \(Y\). Thus, by defining an appropriate set of basis functions and Gaussian Processes, evolutionary inference can be performed on our function-valued traits.
+
+\subsection{Basis Functions for Evolution}
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}
