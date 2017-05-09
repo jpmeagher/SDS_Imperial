@@ -78,7 +78,9 @@ The smoothing parameter \(\lambda\) is chosen using a generalised cross-validati
 
 We now have a functional representation of each bats echolocation call where the pairs of observations \(\{f, \mathcal{E}_{lm}^S(f)\}\) and \(\{f, \mathcal{E}_{l'm'}^{S'}(f)\}\) are directly comparable. The function-valued traits can now be modelled for evolutionary inference.
 
-\section{Gaussian Process Regression on Phylogenies} 
+\section{Phylogenetic Gaussian Process Regression for Bat Echolocation Calls} 
+
+\subsection{Gaussian Process Regression on Phylogenies}
 
 The key innovation of Jones \& Moriarty\cite{jones2013evolutionary} in extending Gaussian Process Regression \cite{rasmussen2006gaussian} for use in evolutionary inference, was to replace the linear measure of distance between observations with a phylogenetic tree, denoted \(\mathbf{T}\). When this condition is imposed each of our observations \(\mathcal{E}^{S}(f)\) correspond to a point \((f, \mathbf{t})\) on the frequency-phylogeny \(F \times \mathbf{T}\). It is then by constructing a phylogenetic covariance function \(\Sigma_{\mathbf{T}}\left(\mathcal{E}^{S}(\cdot), \mathcal{E}^{S'}(\cdot)\right)\) that evolutionary inference can be performed.
 
@@ -91,10 +93,27 @@ Finally, we assume that the covariance function of the marginal process is separ
 
 Under these conditions, Jones \& Moriarty \cite{jones2013evolutionary} show that the phylogenetic covariance function is also separable, that is\[\Sigma_{\mathbf{T}}\left((f,\mathbf{t}), (f',\mathbf{t}')\right) = K(f, f') k_{\mathbf{T}}(\mathbf{t},\mathbf{t}').\] 
 
-It is also shown that for a phylogenetic Gaussian Process with this covariance function, \(Y\), there exists a set of \(n\) deterministic basis functions \(\phi_i: F \to \mathbf{R}\) and univariate Gaussian processes \(X_i\) for \(i = 1,\dots, n\) such that \[
-g(f, \mathbf{t}) = \sum_{i = 1}^{n} \phi_i(f) X_i(\mathbf{t})\] has the same distribution as \(Y\). Thus, by defining an appropriate set of basis functions and Gaussian Processes, evolutionary inference can be performed on our function-valued traits.
+It is also shown that for a phylogenetic Gaussian Process with this covariance function, \(Y\), and a degenerate Mercer kernel, \(K(\cdot, \cdot)\), there exists a set of \(n\) deterministic basis functions \(\phi_i: F \to \mathbf{R}\) and univariate Gaussian processes \(X_i\) for \(i = 1,\dots, n\) such that 
+\[
+g(f, \mathbf{t}) = \sum_{i = 1}^{n} \phi_i(f) X_i(\mathbf{t})
+\] 
+has the same distribution as \(Y\). 
 
-\subsection{Basis Functions for Evolution}
+Thus, given an appropriate set of basis functions, \(\phi_{\mathcal{E}} = [\phi^{\mathcal{E}}_1(\cdot), \dots, \phi^{\mathcal{E}}_n(\cdot)]\), and Gaussian Processes, \(X_{\mathcal{E}} = [X_1^{\mathcal{E}}(\cdot), \dots\ X_n^{\mathcal{E}}(\cdot)]\), the set of observations of the echolocation function-valued trait can be expressed in matrix notation as 
+\[
+\mathcal{E} = X_{\mathcal{E}} \phi_{\mathcal{E}}^{\mathsf{T}},
+\]
+where \( X_{\mathcal{E}}\) is the matrix of mixing coefficients of the fixed basis functions determining the function-valued trait. The values of \( X_{\mathcal{E}}\) are modelled as evolving by univariate phylogenetic Gaussian Processes.
+
+\subsection{Deterministic Basis Functions}
+
+Applying this model to observed traits requires that \(\phi\) be estimated somehow. Hajipantelis et al. \cite{hadjipantelis2013function} addressed this problem. The model outlined above implicitly assumes that the rows of \(X_{\mathcal{E}}\) are independent. This in turn implies that each of the basis, \(\phi_i(\cdot)\), evolved independently of one another. \(\hat{\phi}\), the estimate for \(\phi\), must reflect this. 
+
+A Functional Principal Components Analysis \cite{ramsay2006functional} of the traits would return a set of orthogonal basis functions. This dimension reduction technique allows the selection of \(n\) basis functions which describe some proportion of the variation in the sample. However, this implicitly assumes that the basis functions are also Gaussian, a strong assumption which may not be realistic.
+
+A less stringent condition is to assumes only that the basis functions are independent. Such a set of components can be found by an Independent Components Analysis. Blasche \& Wiskott\cite{blaschke2004cubica} present a method for deriving Independent Components. This two step procedure first implements a Principal Components Analysis to estimate the effective dimensionality of the dataset, before passing the effective dimensions to the CuBICA algorithm. This algorithm then rotates these effective dimensions until the third and fourth cumulants have also been diagonalised, which produces approximately independent basis functions.
+
+\subsection{The Phylogenetic Ornstein-Uhelenbeck Process}
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}
