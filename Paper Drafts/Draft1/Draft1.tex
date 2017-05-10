@@ -154,6 +154,78 @@ B = \sum_{i=1}^{n}\left( k_{\mathbf{T}}^i(\mathbf{t}^*, \mathbf{t}^*) -  k_{\mat
 
 Thus, all the tools required to perform an ancestral reconstruction of the function-valued trait have been defined. 
 
+\section{Results}
+
+\subsection{Data Description}
+
+The post processed echolocation call data accompanying Stathopoulos et al. \cite{stathopoulos2017bat} was used in this analysis. Echolocation calls were recorded across north and central Mexico with a Pettersson 1000x bat detector (Pettersson Elektronik AB, Uppsala, Sweden). Live trapped bats were measured and identified to species level using field keys.\cite{ceballos2005mamiferos} \cite{medellin2sanchez} Bats were recorded either while released from the hand or while tied to a zip line. The bat detector was set to record calls manually in real time, full spectrum at 500 kHz. 
+In total the dataset consists of 22 species in five families, 449 individual bats and 1816 individual echolocation call recordings.
+
+Collen's \cite{collen2012evolution} Bat super-tree provided the basis for the phylogenetic tree of the recorded bat species, \(\mathbf{T}\). 
+
+\begin{table}[ht]
+	\tbl{Echolocation Call Dataset Statistics}
+	{\begin{tabular}{@{}lccc@{}} \toprule
+		Species & Key & Individuals & Calls \\ \colrule
+		Family: Emballonuridae &&& \\
+		1 \textit{Balantiopteryx plicata} & Bapl & 16 & 100 \\
+		\\
+		Family: Molossidae &&& \\
+		2 \textit{Nyctinomops femorosaccus} & Nyfe & 16 & 100 \\
+		3 \textit{Tadarida brasiliensis} & Tabr & 49 & 100  \\
+		\\
+		Family: Vespertilionidae &&& \\
+		4 \textit{Antrozous pallidus} & Anpa & 58 & 100 \\
+		5 \textit{Eptesicus fuscus} & Epfu & 74 & 100 \\
+		6 \textit{Idionycteris phyllotis} & Idph & 6 & 100 \\
+		7 \textit{Lasiurus blossevillii} & Labl & 10 & 90 \\
+		8 \textit{Lasiurus cinereus} & Laci & 5 & 42 \\
+		9 \textit{Lasiurus xanthinus} & Laxa & 8 & 100 \\
+		10 \textit{Myotis volans} & Myvo & 8 & 100 \\
+		11 \textit{Myotis yumanensis} & Myyu & 5 & 89 \\
+		12 \textit{Pipistrellus hesperus} & Pihe & 85 & 100 \\
+		\\
+		Family: Mormoopidae &&& \\
+		13 \textit{Mormoops megalophylla} & Mome & 10 & 100 \\
+		14 \textit{Pteronotus davyi} & Ptda & 8 & 100 \\
+		15 \textit{Pteronotus parnellii} & Ptpa & 23 & 100 \\
+		16 \textit{Pteronotus personatus} & Ptpe & 7 & 51 \\
+		\\
+		Family:Phyllostomidae &&& \\
+		17 \textit{Artibeus jamaicensis} & Arja & 11 & 82 \\
+		18 \textit{Desmodus rotundus} & Dero & 6 & 38 \\
+		19 \textit{Leptonycteris yerbabuenae} & Leye & 26 & 100 \\
+		20 \textit{Macrotus californicus} & Maca & 6 & 53 \\
+		21 \textit{Sturnira ludovici} & Stlu & 8 & 51 \\
+		22 \textit{Sturnira lilium} & Stli & 4 & 20 \\
+		\botrule
+		\end{tabular}
+	}
+	\label{tab::dataset}
+\end{table}
+
+\subsection{Simulation Study}
+
+In order to demonstrate the efficacy of hyperparameter estimation for a phylogenetic Ornstein-Uhlenbeck process over the phylogeny \(\mathbf{T}\), a short simulation study was carried out. For this study, samples of a univariate phylogenetic Ornstein-Uhlenbeck processes with hyperparameters \(\theta= [1,50,1]^{\mathsf{T}}\) were generated. Type II maximum likelihood point estimates of the hyperparameters, were made for each sample. The samples varied in the number of observations taken at the leaf nodes of \(\mathbf{T}\), denoted \(n\), corresponding to the number of observations taken per species. This resulted in a full sample of size \(n \times 22\). The experiment was repeated until there were 1000 samples each for \(n \in \{1,2,4,8\}\). The distribution of the type II maximum likelihood hyperparameter estimates was then examined.
+
+\begin{table}[ht]
+	\tbl{\(\hat{\theta}\) Distribution}
+	{
+		\begin{tabular}{@{}lcccc@{}} \toprule
+			\(n\) & 1 & 2 & 4 & 8  \\ 
+			\colrule
+			\(\sigma_p \)  & mean (std dev) & mean (std dev) & mean (std dev)  \\
+			\(\ell\)  & mean (std dev) & mean (std dev) & mean (std dev)  \\
+			\(\sigma_n\)  & mean (std dev) & mean (std dev) & mean (std dev)  \\
+
+			\botrule
+		\end{tabular}
+	}
+	\label{tab::simulation}
+\end{table}
+
+The results of this simulation study suggest that for any given sample \(\hat{\theta}\) does not provide a good estimate for \(\theta\), thus multiple samples will be required to produce estimates for model hyperparameters. It is also clear that having more observations at each node of the phylogeny results in better hyperparamenter estimation. therefore it is important to ensure that this is the case for inference on \(\mathbf{T}\) for bat echolocation calls.  
+
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}
