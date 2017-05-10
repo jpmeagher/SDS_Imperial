@@ -113,7 +113,47 @@ A Functional Principal Components Analysis \cite{ramsay2006functional} of the tr
 
 A less stringent condition is to assumes only that the basis functions are independent. Such a set of components can be found by an Independent Components Analysis. Blasche \& Wiskott\cite{blaschke2004cubica} present a method for deriving Independent Components. This two step procedure first implements a Principal Components Analysis to estimate the effective dimensionality of the dataset, before passing the effective dimensions to the CuBICA algorithm. This algorithm then rotates these effective dimensions until the third and fourth cumulants have also been diagonalised, which produces approximately independent basis functions.
 
-\subsection{The Phylogenetic Ornstein-Uhelenbeck Process}
+\subsection{The Phylogenetic Ornstein-Uhlenbeck Process for Evolutionary Inference}
+
+The relationships between the mixing coefficients, \(X_{\mathcal{E}}\), are modelled by a phylogenetic Gaussian Process, which must be defined. The Ornstein-Uhlenbeck process offers a popular method of modelling stabilising selection in comparative studies.\cite{hansen1997stabilizing} \cite{collen2012evolution} \cite{hadjipantelis2013function} Here, each independent phylogenetic Gaussian Process, \(X_i(\cdot)\), is modelled as an Ornstein-Uhlenbeck process.
+
+The phylogenetic Ornstein-Uhlenbeck process is defined by the kernel
+\[
+k_{\mathbf{T}}^i(\mathbf{t}, \mathbf{t}') = (\sigma_p^i)^2 \exp \left( \frac{-d_{\mathbf{T}}(\mathbf{t}, \mathbf{t}')}{\ell^i} \right) + (\sigma_n^i)^2 \delta_{\mathbf{t}, \mathbf{t}'}
+\] 
+where \(\delta\) is the Kronecker delta, \(d_{\mathbf{T}}(\mathbf{t}, \mathbf{t}')\) is the cophenetic distance between the points \(\mathbf{t}\) and \(\mathbf{t}'\) on the phylogeny \(\mathbf{T}\), and \(\mathbf{\theta}^i = [\sigma_p^i, \ell^i, \sigma_n^i]^{\mathsf{T}}\) is the vector of hyperparameters for the process \(X_i(\cdot)\).
+
+The full phylogenetic covariance function is then
+\[
+\Sigma_{\mathbf{T}}((f, \mathbf{t}), (f', \mathbf{t}')) = \sum_{i = 1}^{n}  k_{\mathbf{T}}^i(\mathbf{t}, \mathbf{t}') \phi_i^{\mathcal{E}}(f) \phi_i^{\mathcal{E}}(f')
+\]
+and the log likelihood associated with the model is
+\[
+\ell(\mathcal{E} | \theta) = -\frac{1}{2} \sum_{i = 1}^{n} \left( X_i(\cdot)^{\mathsf{T}} k_{\mathbf{T}}^i(\cdot, \cdot)^{-1}  X_i(\cdot) + \log( \det (k_{\mathbf{T}}^i(\cdot, \cdot))) + |X_i(\cdot)| \log 2\pi   \right),
+\]
+where \(\theta = [\theta^1, \dots , \theta^n]\), and \(|X_i(\cdot)|\) is the Euclidean length of the vector of realisations of \(X_i(\cdot)\). 
+
+Model selection can be performed by a type II maximum likelihood estimation procedure which maximises the likelihood of the sample with respect to \(\theta\).
+
+The model hyperparameters have intuitive interpretations. The variance of observations in the sample is \(\sigma_p + \sigma_n\), where \(\sigma_p\) is the phylogenetic noise, and \(\sigma_n\) is the non-phylogenetic noise. \(\sigma_p\) is the proportion of the variance within the sample which due to phylogenetic relationships, while \(\sigma_n\) accounts for other sources of variation. The length-scale parameter, \(\ell\) then indicates the strength of the correlation between traits at various points on the phylogeny, where strong correlations are given by a large \(\ell\).
+
+Finally, ancestral reconstruction of the function-valued trait at some unobserved point in the phylogeny, \(\mathcal{E}^*\), is given by its posterior distribution 
+\[
+p(\mathcal{E}^* | \mathcal{E})  \sim \mathcal{N}(A, B)
+\]
+where 
+\[
+A = \sum_{i=1}^{n} k_{\mathbf{T}}^i(\mathbf{t}^*, \cdot) k_{\mathbf{T}}^i(\cdot, \cdot)
+^{-1} X_i^{\mathcal{E}} (\cdot) \phi_i^{\mathcal{E}}
+\]
+and
+\[
+B = \sum_{i=1}^{n}\left( k_{\mathbf{T}}^i(\mathbf{t}^*, \mathbf{t}^*) -  k_{\mathbf{T}}^i(\mathbf{t}^*, \cdot) k_{\mathbf{T}}^i(\cdot, \cdot)
+^{-1} k_{\mathbf{T}}^i(\mathbf{t}^*, \cdot)^{\mathsf{T}} \right) \phi_i^{\mathcal{E}}
+\]
+
+Thus, all the tools required to perform an ancestral reconstruction of the function-valued trait have been defined. 
+
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}
