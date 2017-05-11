@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.21)  11 MAY 2017 10:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.21)  11 MAY 2017 17:29
 entering extended mode
 **./Draft1.tex
 (Draft1.tex
@@ -394,18 +394,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] [2] [3] [4] [5] [6] [7]
 [8]
 
-LaTeX Warning: Reference `tab:dataset' on page 9 undefined on input line 233.
+LaTeX Warning: Reference `tab:dataset' on page 9 undefined on input line 253.
 
-[9] [10] (Draft1.bbl [11]) [12] (Draft1.aux)
+[9] [10] (Draft1.bbl [11] [12]) [13] (Draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4244 strings out of 493622
- 54363 string characters out of 3143650
- 135594 words of memory out of 3000000
- 7542 multiletter control sequences out of 15000+200000
+ 4246 strings out of 493622
+ 54414 string characters out of 3143650
+ 135611 words of memory out of 3000000
+ 7544 multiletter control sequences out of 15000+200000
  15528 words of font info for 58 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  43i,16n,41p,1052b,306s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -431,9 +431,9 @@ ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files
 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmtt9.pfb>
-Output written on Draft1.pdf (12 pages, 337938 bytes).
+Output written on Draft1.pdf (13 pages, 340039 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

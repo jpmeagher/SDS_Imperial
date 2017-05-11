@@ -208,20 +208,40 @@ Collen's \cite{collen2012evolution} Bat super-tree provided the basis for the ph
 
 In order to demonstrate the efficacy of hyperparameter estimation for a phylogenetic Ornstein-Uhlenbeck process over the phylogeny \(\mathbf{T}\), a short simulation study was carried out. For this study, samples of a univariate phylogenetic Ornstein-Uhlenbeck processes with hyperparameters \(\theta= [1,50,1]^{\mathsf{T}}\) were generated. Type II maximum likelihood point estimates of the hyperparameters, were made for each sample. The samples varied in the number of observations taken at the leaf nodes of \(\mathbf{T}\), denoted \(n\), corresponding to the number of observations taken per species. This resulted in a full sample of size \(n \times 22\). The experiment was repeated until there were 1000 samples each for \(n \in \{1,2,4,8\}\). The distribution of the type II maximum likelihood hyperparameter estimates was then examined.
 
+Removes estimates where \(\ell > 1000\) to stabilise distribution.
+
 \begin{table}[ht]
 	\tbl{\(\hat{\theta}\) Distribution}
 	{
 		\begin{tabular}{@{}lcccc@{}} \toprule
 			\(n\) & 1 & 2 & 4 & 8  \\ 
 			\colrule
-			\(\sigma_p \)  & mean (std dev) & mean (std dev) & mean (std dev)  \\
-			\(\ell\)  & mean (std dev) & mean (std dev) & mean (std dev)  \\
-			\(\sigma_n\)  & mean (std dev) & mean (std dev) & mean (std dev)  \\
+			Discarded & 135 & 42 & 3 & 0 \\
+			\colrule
+			\(\sigma_p \)  & 1.15 (0.45) & 0.92 (0.27) & 0.88 (0.24) & 0.81 (0.19)  \\
+			\(\ell\)  & 47.69 (76.73) & 52.30 (78.00) & 49.40 (62.66) & 44.70 (45.57)  \\
+			\(\sigma_n\)  & 0.50 (0.52) & 1.03 (0.14) & 1.08 (0.10) & 1.13 (0.09) \\
 
 			\botrule
 		\end{tabular}
 	}
 	\label{tab::simulation}
+\end{table}
+
+\begin{table}[ht]
+	\tbl{\(\hat{\theta}\) Distribution}
+	{
+		\begin{tabular}{@{}ccccc@{}} \toprule
+			\(n\) & \(\ell > 1000\) & \(\sigma_p \) & \(\ell\) & \(\sigma_n\) \\
+			\colrule
+			1 & 135 & 1.15 (0.45) & 47.69 (76.73) & 0.50 (0.52) \\
+			2 & 42 & 0.92 (0.27) & 52.30 (78.00) & 1.03 (0.14) \\
+			4 & 3 & 0.88 (0.24) & 49.40 (62.66) & 1.08 (0.10) \\
+			8 & 0 & 0.81 (0.19) & 44.70 (45.57) & 1.13 (0.09) \\			
+			\botrule
+		\end{tabular}
+	}
+	\label{tab::simulation_option2}
 \end{table}
 
 The results of this simulation study suggest that for any given sample \(\hat{\theta}\) does not provide a good estimate for \(\theta\), thus multiple samples will be required to produce estimates for model hyperparameters. It is also clear that having more observations at each node of the phylogeny results in better hyperparamenter estimation. therefore it is important to ensure that this is the case for inference on \(\mathbf{T}\) for bat echolocation calls.  
@@ -253,6 +273,24 @@ We are interested in the evolution of echolocation in bats to a species level, t
 		\end{tabular}
 	}
 	\label{tab::bat_results}
+\end{table}
+
+\begin{table}[ht]
+	\tbl{\(\hat{\theta}\) Distribution}
+	{
+		\begin{tabular}{@{}cccc@{}} \toprule
+			Basis & \(\sigma_p\) & \(\ell\) & \(\sigma_n\) \\
+			\colrule
+			1 & 0.35 (0.008) & 224.5 (39.15) & 0.08 (0.007) \\
+			2 & 0.51 (0.015) & 287.9 (44.76) & 0.09 (0.009) \\
+			3 & 0.42 (0.021)& 204.2 (30.39) & 0.08 (0.009) \\
+			4 & 0.59 (0.019) & 390.1 (74.44) & 0.14 (0.013) \\
+			5 & 0.51 (0.010) & 339.8 (42.81) & 0.08 (0.008) \\
+			6 & 0.48 (0.013) & 148.6 (23.29) & 0.09 (0.011) \\
+			\botrule
+		\end{tabular}
+	}
+	\label{tab::bat_results_option2}
 \end{table}
 
 Ancestral reconstructions were performed by taking the sample mean for each species and obtaining posterior distributions based on these mean estimates.
