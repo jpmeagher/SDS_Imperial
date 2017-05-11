@@ -159,7 +159,7 @@ Thus, all the tools required to perform an ancestral reconstruction of the funct
 \subsection{Data Description}
 
 The post processed echolocation call data accompanying Stathopoulos et al. \cite{stathopoulos2017bat} was used in this analysis. Echolocation calls were recorded across north and central Mexico with a Pettersson 1000x bat detector (Pettersson Elektronik AB, Uppsala, Sweden). Live trapped bats were measured and identified to species level using field keys.\cite{ceballos2005mamiferos} \cite{medellin2sanchez} Bats were recorded either while released from the hand or while tied to a zip line. The bat detector was set to record calls manually in real time, full spectrum at 500 kHz. 
-In total the dataset consists of 22 species in five families, 449 individual bats and 1816 individual echolocation call recordings.
+In total the dataset consists of 22 species in five families, 449 individual bats and 1816 individual echolocation call recordings. 
 
 Collen's \cite{collen2012evolution} Bat super-tree provided the basis for the phylogenetic tree of the recorded bat species, \(\mathbf{T}\). 
 
@@ -226,6 +226,52 @@ In order to demonstrate the efficacy of hyperparameter estimation for a phylogen
 
 The results of this simulation study suggest that for any given sample \(\hat{\theta}\) does not provide a good estimate for \(\theta\), thus multiple samples will be required to produce estimates for model hyperparameters. It is also clear that having more observations at each node of the phylogeny results in better hyperparamenter estimation. therefore it is important to ensure that this is the case for inference on \(\mathbf{T}\) for bat echolocation calls.  
 
+\subsection{The Evolution of Echolocation in Bats}
+
+Given the functional representation of the bat echolocation calls described a set of deterministic basis functions need to be defined. These basis functions should be derived in a methodologically sound while still having an interpretation that reflects the specific dataset being considered. 
+
+An important consideration in the analysis of any dataset is the notion of sampling bias. Even if we accept that that obtaining a representative sample of all the 1000 plus species of bat, is not possible, the small dataset analysed here is inherently imbalanced, as illustrated in Table \ref{tab:dataset}. At all stages of the analysis reasonable steps were taken to mitigate the effects of sampling bias.
+
+The first step in identifying a set of stable, interpretable, independent basis functions involved a Principal Components Analysis of 1000 samples of Echolocation Calls, balanced by both individual and species. These balanced samples randomly selected 4 individuals per species and then  randomly selected one of these individuals call recordings. Over all these samples it was found that the first 6 principal components generally accounted for 85\% of the variation in the sample, with the \(6^{th}\) component accounting for 3\% of the variation. The first and second Principal components were consistent across samples and so the mean of all these sampled components were identified as the first and second overall principal components. 
+
+The remaining components were then grouped by the frequency with the absolute maximum weight. Grouping components in this way means that each component can be interpreted as the frequency with maximum energy.
+In this way 6 overall principal components were identified. These principal components were then passed through the CuBICA algorithm and independent basis functions for the bats echolocation calls identified. These basis functions were then passed on for analysis alongside the phylogenetic Ornstein-Uhlenbeck process.
+
+We are interested in the evolution of echolocation in bats to a species level, thus it is important to consider function valued traits that are representative of the species. Thus we consider estimates of the species level traits by taking balsanced estimates of the mean trait for that species. These mean estimates took one calls from 4 individuals. 4 such estimates were taken to form a sample of traits for type II MLE. 1000 samples were taken and hyperparameters estimated for each basis function. The distribution of these estimates were used to create hyperparameter estimates.
+
+\begin{table}[ht]
+	\tbl{\(\hat{\theta}\) Distribution}
+	{
+		\begin{tabular}{@{}lccccccc@{}} \toprule
+			Basis: & Bias & 1 & 2 & 3 & 4 & 5 & 6 \\ 
+			\colrule
+			\(\sigma_p \)  & mean (std dev) & mean (std dev) & mean (std dev) &&&&  \\
+			\(\ell\)  & mean (std dev) & mean (std dev) & mean (std dev) &&&& \\
+			\(\sigma_n\)  & mean (std dev) & mean (std dev) & mean (std dev) &&&&  \\
+			
+			\botrule
+		\end{tabular}
+	}
+	\label{tab::bat_results}
+\end{table}
+
+Ancestral reconstructions were performed by taking the sample mean for each species and obtaining posterior distributions based on these mean estimates.
+
+\section{Conclusions and Future Work}
+
+Demonstrated an application of phylogenetic Gaussian processes for a dataset. Higlighted issues with balanced samples, how to leverage the dataset to account for this. 
+
+Identified features of calls, corresponding to frequencies. Demonstrated a possible evolutionary dynamic. 
+
+Performed ancestral reconstructions which suggest...
+
+Early stages of this work, there are some extensions to be made. Spectrograms as function valued traits, account for temporal variation in call.
+
+consider other representations.
+
+Consider ways of extending these models to more realistic models of evolution, relax assumptions.
+
+When methodology has bee resolved extend to a larger dataset. EchoBank is there. Hopefully contribute to the understanding of the evolution of echolocation in bats.
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}
