@@ -3,6 +3,7 @@ set.seed(8)
 
 # Create the samples of calls balanced by species and individual.
 N <- 1000
+
 resampled_calls <- balanced_samples(smooth_and_regularise_call_densities(), n_samples = N)
 
 # Proportion of variance accounted for by each component.
@@ -139,4 +140,4 @@ spectral_mean <- mean_centring_curve
 
 
 devtools::use_data(spectral_fpca)
-devtools::use_data(spectral_mean)
+devtools::use_data(spectral_mean, overwrite = T)

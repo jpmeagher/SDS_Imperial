@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Review Volume (last updated on 20-4-2015)                            %%
+%% Trim Size: 9in x 6in                                                 %%
+%% Text Area: 7.35in (include runningheads) x 4.5in                     %%
+%% Main Text: 10 on 13pt                                                %%
+%% For support: Yolande Koh, <ykoh@wspc.com.sg>                         %%
+%%              D. Rajesh Babu, <rajesh@wspc.com.sg>                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
+%\documentclass{ws-rv9x6}
+\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+\usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
+\usepackage{ws-rv-van}   % numbered citation & references (default)
+%\usepackage{ws-index}   % to produce multiple indexes
+\makeindex
+%\newindex{aindx}{adx}{and}{Author Index}       %author index
+%\renewindex{default}{idx}{ind}{Subject Index}  %subject index
+
+\begin{document}
+
+\chapter[Ancestral Reconstruction of Bat Echolocation Calls]{Ancestral Reconstruction of Bat Echolocation Calls}\label{ra_ch1}
+
+\author[J.P. Meagher et al.]{J.P. Meagher\footnote{Author footnote.}}
+%\index[aindx]{Author, F.} % or \aindx{Author, F.}
+%\index[aindx]{Author, S.} % or \aindx{Author, S.}
+
+\address{Department of Statistics,\\
+University of Warwick, \\
+J.Meagher@Warwick.ac.uk\footnote{Affiliation footnote.}}
+
+\begin{abstract}
+ Something something bats something evolution something ancestral reconstruction something magic.
+\end{abstract}
+%\markright{Customized Running Head for Odd Page} % default is Chapter Title.
+\body
+
+%\tableofcontents
+\section{Introduction}
+
+The emerging field of Data Science is driven by research which lies at the nexus of Statistics and Computer Science. Bioacoustics is one such area generating vast quantities of data, often through citizen science initiatives. \cite{allen2006citizen} \cite{pettorelli2013indicator} Bioacoustic techniques for biodiversity monitoring \cite{stathopoulos2017bat} \cite{damoulas2010bayesian} have the potential to make real policy impacts, particularly with regard to sustainable economic development and nature conservation.
+
+Bats (order \textit{Chiroptera}) have been identified as ideal bioindicators for monitoring climate change and habitat quality,\cite{jones2009carpe} and are of particular interest for monitoring biodiversity acoustically. Typically, a bat broadcasts information about itself in an ultrasonic echolocation call.\cite{griffin1944echolocation} The development of automatic acoustic monitoring algorithms \cite{stathopoulos2017bat} \cite{walters2012continental} means that large scale, non-invasive monitoring of bats is becoming possible.   
+
+Monitoring bat populations provides useful information, but an understanding the orders natural history is required to identify the cause and effect of any changes observed. The echolocation calls structure, which reflects a bats diet and habitat,\cite{aldridge1987morphology}  is a key aspect of this natural history. Reconstructing ancestral traits\cite{joy2016ancestral} relies on a statistical comparative analysis incorporating extant species and fossil records. \cite{felsenstein2004inferring} However, the fossil record is of limited use in inferring ancestral bats echolocation calls. Therefore, statistical data science techniques may shed some light on this topic.
+
+Previous studies of bat echolocation calls for both classification \cite{walters2012continental} and ancestral reconstruction \cite{collen2012evolution} analysed features extracted from the call spectrogram. These call features relied domain knowledge to ensure they were sensibly selected and applied. More recently, general techniques for the classification of acoustic signals have been developed. \cite{stathopoulos2014bat} \cite{damoulas2010bayesian} General techniques for the ancestral reconstruction of function-valued traits have also been proposed. \cite{group2012phylogenetic} This piece of research applies some proposed techniques to bat echolocation calls.
+
+A function-valued trait\cite{meyer2005up} is a characteristic of some organism measured along some continuous scale, usually time, and can be modelled as a continuous mathematical function by functional data analysis. \cite{ramsay2006functional} Jones \& Moriarty \cite{jones2013evolutionary} developed a method which extends Gaussian Process Regression \cite{rasmussen2006gaussian} to model the evolution of function-valued traits over a phylogeny. A full demonstration of the phylogenetic Gaussian Process method for ancestral reconstruction on a synthetic dataset is presented by Hajipantelis et al.\cite{hadjipantelis2013function}
+
+This general approach to evolutionary inference for function-valued traits is implemented here for a set of bat echolocation calls. Our goal in doing so is twofold. These techniques had previously been considered in the context of modelling the evolution of human speech sounds in language. \cite{group2012phylogenetic} It is hoped that by applying these methods in a simpler context progress can be made towards resolving methodological problems. For example, how do we extend these methods to more realistic models of evolution?
+
+We are also interested in what specifically these models tell us about bats and the evolutionary dynamics of echolocation. What impact might these results have on our understanding of ancestral bats and their behaviour?
+
+This paper presents the early stages of our research and some preliminary results.
+
+\section{Echolocation Calls as Function-Valued Traits}
+
+A functional data object is generated when repeated measurements of some process are taken along a continuous scale, such as time. \cite{ramsay2006functional} 
+These measurements can be thought of as representing points on a curve that varies gradually and continuously. In the context of phylogenetics, these functional data objects are function-valued traits. \cite{meyer2005up}
+
+Denote the \(m^{th}\) call recording of the \(l^{th}\) individual bat of species \(S\) by \(\{\tilde{x}_{lm}^S(n) : n = 0, \dots, N_{lm}^S - 1\}\). 
+Thus, \(\{x_{lm}^S(\cdot)\}\) is a series of discrete measurements of the function \(x_{lm}^S(\cdot)\), the \(m^{th}\) call function for the \(l^{th}\) individual bat, observed at the time points given by \(\frac{n}{f_S}\), where \(f_S\) is the sampling rate, in samples per second (Hz), of the recording. Assume then that \(x_{lm}^S(\cdot) = x_{l}^S(\cdot) + z_{lm}^S(\cdot)\), where \(x_{l}^S(\cdot)\) is the representative call function for the \(l^{th}\) individual and \(z_{lm}^S(\cdot)\) is the noise process for the \(m^{th}\) call. Further to this, assume that \(x_{l}^S(\cdot) = x^S(\cdot) + z_{l}^S(\cdot)\) where \(x^S(\cdot)\) is the representative call function for the bat species \(S\) and \(z_{l}^S(\cdot)\) is the noise process for the \(l^{th}\) individual. It is the echolocation call functions at the species level that we re interested in.
+
+The call recordings themselves are functional data objects, however modelling the phylogenetic relationships between \(\{x_{lm}^S(t)\}\) and \(\{x_{l'm'}^{S'}(t)\}\) directly implies that the processes are comparable at time \(t\). 
+This is not the case for acoustic signals, a phenomenon which is often addressed by dynamic time warping.\cite{berndt1994using} Another approach to this issue is to consider an alternative functional representation of the signal. 
+
+The Fourier transform \(x_{lm}^{S}(\cdot)\) is given by
+\[
+X_{lm}^S(f) = \int_{-\infty}^{\infty} x_{lm}^{S}(t) e^{-i 2\pi f t} dt.
+\label{eqn:dft}
+\]
+The energy spectral density of \(x_{lm}^{S}(\cdot)\) is the magnitude of the Fourier transform and the log energy spectral density is given by
+\begin{equation}
+\mathcal{E}_{lm}^S(\cdot) = 10 \log_{10} \left( |X_{lm}^S(\cdot)|^2 \right).
+\label{eqn:esd}
+\end{equation}
+
+Similarly to the call functions, \(\mathcal{E}_{lm}^S(\cdot)\) is the log energy spectral density of the \(m^{th}\) call of the \(l^{th}\) individual from species \(S\) where \(\mathcal{E}_{lm}^S(\cdot) = \mathcal{E}_{l}^S(\cdot) + \mathcal{Z}_{lm}^S(\cdot)\) and \(\mathcal{E}_{l}^S(\cdot) = \mathcal{E}^S(\cdot) + \mathcal{Z}_{l}^S(\cdot)\) where \(\mathcal{Z}_{lm}^S(\cdot)\) and \(\mathcal{Z}_{l}^S(\cdot)\) are noise processes.  The log energy spectral density is a periodic function of frequency which describes the energy of a signal at each frequency on the interval \(F = [0, \frac{f_S}{2}]\).\cite{antoniou2006digital} It is now assumed that \(\mathcal{E}_{lm}^S(f)\) and \(\mathcal{E}_{l'm'}^{S'}(f)\) are comparable at frequency \(f\).
+
+The discrete Fourier Transform\cite{antoniou2006digital}
+of \(\{\tilde{x}_{lm}^{S}(n)\}\) provides an estimate for the log energy spectral density, the positive frequencies of which are denoted \(\{\mathcal{E}_{lm}^S(k) : k = 0, \dots, \frac{ N_{lm}^S}{2} + 1\}\). Smoothing splines\cite{friedman2001elements} are applied to this series to obtain \(\hat{\mathcal{E}}_{lm}^{S}(\cdot)\), a smooth function estimating \(\mathcal{E}_{lm}^{S}(\cdot)\).
+
+We now have a functional representation of each bats echolocation call where the pairs of observations \(\{f, \mathcal{E}_{lm}^S(f)\}\) and \(\{f, \mathcal{E}_{l'm'}^{S'}(f)\}\) are directly comparable. These function-valued traits can now be modelled for evolutionary inference.
+
+\bibliographystyle{ws-rv-van}
+\bibliography{../BatBiblio}
+
+%\blankpage
+%\printindex[aindx]                 % to print author index
+%\printindex                         % to print subject index
+
+\end{document} 
