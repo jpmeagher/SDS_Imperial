@@ -7,15 +7,16 @@
 \citation{griffin1944echolocation}
 \citation{stathopoulos2017bat}
 \citation{walters2012continental}
-\citation{aldridge1987morphology}
-\citation{joy2016ancestral}
-\citation{felsenstein2004inferring}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {chapter}{1.\unskip \hspace  *{1em}Ancestral Reconstruction of Bat Echolocation Calls}{1}}
 \newlabel{ra_ch1}{{1}{1}}
 \@writefile{toc}{\contentsline {author}{J.P. Meagher et al.}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\newlabel{sec:intro}{{1}{1}}
+\citation{aldridge1987morphology}
+\citation{joy2016ancestral}
+\citation{felsenstein2004inferring}
 \citation{walters2012continental}
 \citation{collen2012evolution}
 \citation{stathopoulos2014bat}
@@ -29,31 +30,54 @@
 \citation{group2012phylogenetic}
 \citation{ramsay2006functional}
 \citation{meyer2005up}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Echolocation Calls as Function-Valued Traits}{2}}
 \citation{berndt1994using}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Echolocation Calls as Function-Valued Traits}{3}}
+\newlabel{sec:funrep}{{2}{3}}
+\newlabel{fig:call}{{1(a)}{3}}
+\newlabel{sub@fig:call}{{(a)}{3}}
+\newlabel{fig:esd}{{1(b)}{3}}
+\newlabel{sub@fig:esd}{{(b)}{3}}
+\newlabel{fig:funrep}{{1(c)}{3}}
+\newlabel{sub@fig:funrep}{{(c)}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces A recording of a bat echolocation call (a) along with the log energy spectral density of the call (b) and the smooth functional representation of that spectral density (c).}}{3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{3}}
 \citation{antoniou2006digital}
 \citation{antoniou2006digital}
 \citation{friedman2001elements}
 \citation{rasmussen2006gaussian}
-\newlabel{eqn:dft}{{2}{3}}
-\newlabel{eqn:esd}{{1}{3}}
 \citation{jones2013evolutionary}
+\newlabel{eqn:dft}{{2}{4}}
+\newlabel{eqn:esd}{{1}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Phylogenetic Gaussian Processes}{4}}
+\newlabel{sec:pgp}{{3}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces An example of a Phylogenetic Tree and a simulated univariate phylogenetic Gaussian process of that tree.}}{5}}
 \citation{hadjipantelis2013function}
 \citation{blaschke2004cubica}
-\newlabel{eqn:phy}{{2}{5}}
-\newlabel{eqn:inv}{{3}{5}}
-\newlabel{eqn:oukernel}{{4}{5}}
+\newlabel{eqn:phy}{{2}{6}}
+\newlabel{eqn:inv}{{3}{6}}
+\newlabel{eqn:oukernel}{{4}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Set of basis functions identified}}{7}}
+\newlabel{eqn:t2mle}{{5}{7}}
+\newlabel{eqn:postmean}{{6}{7}}
+\newlabel{eqn:postvar}{{7}{7}}
 \citation{stathopoulos2017bat}
 \citation{ceballos2005mamiferos}
 \citation{medellin2sanchez}
 \citation{collen2012evolution}
-\newlabel{eqn:t2mle}{{5}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Description}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Echolocation Call Dataset}}{7}}
-\newlabel{tab::dataset}{{1}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hyperparameter Estimation for Phylogenetic Gaussian Processes}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Description}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hyperparameter Estimation and Ancestral Trait Reconstruction with Phylogenetic Gaussian Processes}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Echolocation Call Dataset}}{9}}
+\newlabel{tab::dataset}{{1}{9}}
+\newlabel{eqn:est}{{8}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Summary of \(\mathaccentV {hat}05E{\theta }\) for 1000 simulations of independent Ornstein-Uhlenbeck processes with \(\theta = [1,50,1]^{\mathsf  {T}}\) reporting: sample mean (standard error) }}{10}}
+\newlabel{tab::ind_simulation}{{2}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Summary of \(\mathaccentV {hat}05E{\theta }_r\) over 1000 \(\mathaccentV {hat}05E{\mathcal  {E}_r}\) samples reporting: sample mean (standard error)}}{11}}
+\newlabel{tab::bat_results}{{3}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Ancestral Reconstruction}}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusions and Further Work}{11}}
 \bibstyle{ws-rv-van}
 \bibdata{../BatBiblio}
 \bibcite{allen2006citizen}{1}
@@ -62,10 +86,8 @@
 \bibcite{damoulas2010bayesian}{4}
 \bibcite{jones2009carpe}{5}
 \bibcite{griffin1944echolocation}{6}
+\@writefile{toc}{\contentsline {section}{References}{12}}
 \bibcite{walters2012continental}{7}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Summary of \(\mathaccentV {hat}05E{\theta }\) for 1000 samples reporting the sample mean (standard error) }}{8}}
-\newlabel{tab::ind_simulation}{{2}{8}}
-\@writefile{toc}{\contentsline {section}{References}{8}}
 \bibcite{aldridge1987morphology}{8}
 \bibcite{joy2016ancestral}{9}
 \bibcite{felsenstein2004inferring}{10}

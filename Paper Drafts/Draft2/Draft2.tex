@@ -19,9 +19,9 @@
 
 \begin{document}
 
-\chapter[Ancestral Reconstruction of Bat Echolocation Calls]{Ancestral Reconstruction of Bat Echolocation Calls}\label{ra_ch1}
+\chapter[Ancestral Reconstruction of Bat Echolocation Calls]{Phylogenetic Gaussian Processes for the Ancestral Reconstruction of Bat Echolocation Calls}\label{ra_ch1}
 
-\author[J.P. Meagher et al.]{J.P. Meagher\footnote{Author footnote.}}
+\author[J.P. Meagher et al.]{J.P. Meagher, T. Damoulas, K.E. Jones, and M. Girolami\footnote{Author footnote.}}
 %\index[aindx]{Author, F.} % or \aindx{Author, F.}
 %\index[aindx]{Author, S.} % or \aindx{Author, S.}
 
@@ -30,13 +30,14 @@ University of Warwick, \\
 J.Meagher@Warwick.ac.uk\footnote{Affiliation footnote.}}
 
 \begin{abstract}
- Something something bats something evolution something ancestral reconstruction something magic.
+The reconstruction of ancestral function-valued traits in phylogenetics requires the use computational Statistics for comparative analysis. The reconstruction of ancestral bat echolocation calls is an important part of understanding bats natural history. General techniques for the ancestral reconstruction of function-valued traits have recently been proposed. A full implementation of phylogenetic Gaussian processes for the ancestral reconstruction of function-valued traits representing bat echolocation calls is presented here. A phylogenetic signal was found in the data and ancestral reconstruction performed. Further interpretation of these results will be required to deduce the full implication of this model on our understanding of the evolution of echolocation in bats.
 \end{abstract}
 %\markright{Customized Running Head for Odd Page} % default is Chapter Title.
 \body
 
 %\tableofcontents
 \section{Introduction}
+\label{sec:intro}
 The emerging field of Data Science is driven by research which lies at the nexus of Statistics and Computer Science. Bioacoustics is one such area generating vast quantities of data, often through citizen science initiatives. \cite{allen2006citizen} \cite{pettorelli2013indicator} Bioacoustic techniques for biodiversity monitoring \cite{stathopoulos2017bat} \cite{damoulas2010bayesian} have the potential to make real policy impacts, particularly with regard to sustainable economic development and nature conservation.
 
 Bats (order \textit{Chiroptera}) have been identified as ideal bioindicators for monitoring climate change and habitat quality,\cite{jones2009carpe} and are of particular interest for monitoring biodiversity acoustically. Typically, a bat broadcasts information about itself in an ultrasonic echolocation call.\cite{griffin1944echolocation} The development of automatic acoustic monitoring algorithms \cite{stathopoulos2017bat} \cite{walters2012continental} means that large scale, non-invasive monitoring of bats is becoming possible.   
@@ -54,11 +55,19 @@ We are also interested in what specifically these models tell us about bats and 
 This paper presents the early stages of our research and some preliminary results.
 
 \section{Echolocation Calls as Function-Valued Traits}
+\label{sec:funrep}
 A functional data object is generated when repeated measurements of some process are taken along a continuous scale, such as time. \cite{ramsay2006functional} 
 These measurements can be thought of as representing points on a curve that varies gradually and continuously. In the context of phylogenetics, these functional data objects are function-valued traits. \cite{meyer2005up}
 
+\begin{figure}
+	\subfigure[]{\includegraphics[width = 0.3\textwidth]{../Figures/callrec.eps} \label{fig:call}}
+	\subfigure[]{\includegraphics[width = 0.3\textwidth]{../Figures/esd.eps} \label{fig:esd}}
+	\subfigure[]{\includegraphics[width = 0.3\textwidth]{../Figures/funrep.eps} \label{fig:funrep}}
+	\caption{A recording of a bat echolocation call (a) along with the log energy spectral density of the call (b) and the smooth functional representation of that spectral density (c).}
+\end{figure}
+
 Given a phylogenetic tree \(\mathbf{T}\), representing the evolutionary relationships between the recorded bat species, we denote the \(m^{th}\) call recording of the \(l^{th}\) individual bat of the species observed at point \(\mathbf{t} \in \mathbf{T}\) by \(\{\tilde{x}_{lm}^{\mathbf{t}}(n) : n = 0, \dots, N_{lm}^{\mathbf{t}} - 1\}\). 
-Thus, \(\{x_{lm}^{\mathbf{t}}(\cdot)\}\) is a series of discrete measurements of the function \(x_{lm}^{\mathbf{t}}(\cdot)\), the \(m^{th}\) call function for the \(l^{th}\) individual bat, observed at the time points given by \(\frac{n}{f_S}\), where \(f_S\) is the sampling rate, in samples per second (Hz), of the recording. Assume then that \(x_{lm}^{\mathbf{t}}(\cdot) = x_{l}^{\mathbf{t}}(\cdot) + z_{lm}^{\mathbf{t}}(\cdot)\), where \(x_{l}^{\mathbf{t}}(\cdot)\) is the representative call function for the \(l^{th}\) individual and \(z_{lm}^{\mathbf{t}}(\cdot)\) is the noise process for the \(m^{th}\) call. Further to this, assume that \(x_{l}^{\mathbf{t}}(\cdot) = x^{\mathbf{t}}(\cdot) + z_{l}^{\mathbf{t}}(\cdot)\) where \(x^{\mathbf{t}}(\cdot)\) is the representative call function for the bat species at \({\mathbf{t}}\) and \(z_{l}^{\mathbf{t}}(\cdot)\) is the noise process for the \(l^{th}\) individual. It is the echolocation call functions at the species level that we re interested in.
+Thus, \(\{x_{lm}^{\mathbf{t}}(\cdot)\}\) is a series of discrete measurements of the function \(x_{lm}^{\mathbf{t}}(\cdot)\), the \(m^{th}\) call function for the \(l^{th}\) individual bat, observed at the time points given by \(\frac{n}{f_S}\), where \(f_S\) is the sampling rate, in samples per second (Hz), of the recording. Assume then that \(x_{lm}^{\mathbf{t}}(\cdot) = x_{l}^{\mathbf{t}}(\cdot) + z_{lm}^{\mathbf{t}}(\cdot)\), where \(x_{l}^{\mathbf{t}}(\cdot)\) is the representative call function for the \(l^{th}\) individual and \(z_{lm}^{\mathbf{t}}(\cdot)\) is the noise process for the \(m^{th}\) call, where \(\mathbf{E}[z_{lm}^{\mathbf{t}}(\cdot)] = 0\). Further to this, assume that \(x_{l}^{\mathbf{t}}(\cdot) = x^{\mathbf{t}}(\cdot) + z_{l}^{\mathbf{t}}(\cdot)\) where \(x^{\mathbf{t}}(\cdot)\) is the representative call function for the bat species at \({\mathbf{t}}\) and \(z_{l}^{\mathbf{t}}(\cdot)\) is the noise process for the \(l^{th}\) individual, with \(\mathbf{E}[z_{l}^{\mathbf{t}}(\cdot)] = 0\). It is the echolocation call functions at the species level that we re interested in.
 
 The call recordings themselves are functional data objects, however modelling the phylogenetic relationships between \(\{x_{lm}^{\mathbf{t}}(t)\}\) and \(\{x_{l'm'}^{{\mathbf{t}}'}(t)\}\) directly implies that the processes are comparable at time \(t\). 
 This is not the case for acoustic signals, a phenomenon which is often addressed by dynamic time warping.\cite{berndt1994using} Another approach to this issue is to consider an alternative functional representation of the signal. 
@@ -74,14 +83,15 @@ The energy spectral density of \(x_{lm}^{\mathbf{t}}(\cdot)\) is the magnitude o
 \label{eqn:esd}
 \end{equation}
 
-Similarly to the call functions, \(\mathcal{E}_{lm}^{\mathbf{t}}(\cdot)\) is the log energy spectral density of the \(m^{th}\) call of the \(l^{th}\) individual from the species at \({\mathbf{t}}\) where \(\mathcal{E}_{lm}^{\mathbf{t}}(\cdot) = \mathcal{E}_{l}^{\mathbf{t}}(\cdot) + \mathcal{Z}_{lm}^{\mathbf{t}}(\cdot)\) and \(\mathcal{E}_{l}^{\mathbf{t}}(\cdot) = \mathcal{E}^{\mathbf{t}}(\cdot) + \mathcal{Z}_{l}^{\mathbf{t}}(\cdot)\) where \(\mathcal{Z}_{lm}^{\mathbf{t}}(\cdot)\) and \(\mathcal{Z}_{l}^{\mathbf{t}}(\cdot)\) are noise processes.  The log energy spectral density is a periodic function of frequency which describes the energy of a signal at each frequency on the interval \(F = [0, \frac{f_S}{2}]\).\cite{antoniou2006digital}
+Similarly to the call functions, \(\mathcal{E}_{lm}^{\mathbf{t}}(\cdot)\) is the log energy spectral density of the \(m^{th}\) call of the \(l^{th}\) individual from the species at \({\mathbf{t}}\) where \(\mathcal{E}_{lm}^{\mathbf{t}}(\cdot) = \mathcal{E}_{l}^{\mathbf{t}}(\cdot) + \mathcal{Z}_{lm}^{\mathbf{t}}(\cdot)\) and \(\mathcal{E}_{l}^{\mathbf{t}}(\cdot) = \mathcal{E}^{\mathbf{t}}(\cdot) + \mathcal{Z}_{l}^{\mathbf{t}}(\cdot)\) where \(\mathcal{Z}_{lm}^{\mathbf{t}}(\cdot)\) and \(\mathcal{Z}_{l}^{\mathbf{t}}(\cdot)\) are noise processes, each with ae expected value of zero.  The log energy spectral density is a periodic function of frequency which describes the energy of a signal at each frequency on the interval \(F = [0, \frac{f_S}{2}]\).\cite{antoniou2006digital}
 
 The discrete Fourier Transform\cite{antoniou2006digital}
 of \(\{\tilde{x}_{lm}^{\mathbf{t}}(n)\}\) provides an estimate for the log energy spectral density, the positive frequencies of which are denoted \(\{\mathcal{E}_{lm}^{\mathbf{t}}(k) : k = 0, \dots, \frac{ N_{lm}^{\mathbf{t}}}{2} + 1\}\). Smoothing splines\cite{friedman2001elements} are applied to this series to obtain \(\hat{\mathcal{E}}_{lm}^{\mathbf{t}}(\cdot)\), a smooth function estimating \(\mathcal{E}_{lm}^{\mathbf{t}}(\cdot)\).
 
-We now have a functional representation of each bats echolocation call where the pairs of observations \(\{f, \mathcal{E}_{lm}^{\mathbf{t}}(f)\}\) and \(\{f, \mathcal{E}_{l'm'}^{{\mathbf{t}}'}(f)\}\) are directly comparable. These function-valued traits can now be modelled for evolutionary inference.
+We now have a functional representation of each bats echolocation call where the pairs of observations \(\{f, \hat{\mathcal{E}}_{lm}^{\mathbf{t}}(f)\}\) and \(\{f, \hat{\mathcal{E}}_{l'm'}^{{\mathbf{t}}'}(f)\}\) are directly comparable. These function-valued traits can now be modelled for evolutionary inference.
 
 \section{Phylogenetic Gaussian Processes}
+\label{sec:pgp}
 A Gaussian Process is a collection of random variables, any finite number of which have a joint Gaussian distribution. A Gaussian process prior can be defined as a distribution over functions, \(f(x) \sim \mathcal{GP}(m(x), k (x, x'),\) where \(x \in \mathbf{R}^P\) is some input variable, the mean function \(m(x) = \mathbf{E}[f(x)]\), and the covariance kernel \(k(x, x') = \mathnormal{cov}(f(x), f(x') )\). Any collection of function values has a joint Gaussian distribution
 \(
 [f(x_1), f(x_2), \dots f(x_N)]^{\mathsf{T}} \sim \mathcal{N}(\)\boldmath\(\mu\)\unboldmath, \(\mathbf{K}
@@ -89,6 +99,12 @@ A Gaussian Process is a collection of random variables, any finite number of whi
 where the \(N \times N\) covariance matrix \(\mathbf{K}\)  has the entries \(K_{ij} = k(x_i, x_j)\), and the mean \boldmath\(\mu\)\unboldmath\(\) has entries \(\mu_i = m(x_i)\). Thus, the properties of the functions are determined by the kernel function. Assuming that the function values \(\mathbf{y}\) observed at locations \(\{x_n\}_{n=1}^N\) are subject to Gaussian noise, and given the kernel hyperparameters \(\theta\), a posterior predictive distribution over Gaussian process functions can be inferred analytically. A marginal likelihood \(p(\mathbf{y} | \theta, \{x_n\}_{n=1}^N)\), which can in turn be used to estimate the kernel hyperparameters, can also be derived analytically. An in depth treatment of Gaussian processes is given by Rasmussen \& Williams.\cite{rasmussen2006gaussian}  
 
 Jones \& Moriarty\cite{jones2013evolutionary} extend Gaussian processes for inference on function-valued traits over a phylogeny. Consider \(\mathcal{E}^{\mathbf{t}}(\cdot)\), a functional representation of the echolocation call of the species observed at the point \(\mathbf{t}\) on the phylogenetic tree \(\mathbf{T}\) with respect to frequency. Modelling this as Gaussian process function where \(\mathcal{E}^{\mathbf{t}}(f)\) corresponds to a point \((f, \mathbf{t})\) on the frequency-phylogeny \(F \times \mathbf{T}\) requires that a suitable phylogenetic covariance function, \(\Sigma_{\mathbf{T}}\left((f,\mathbf{t}), (f',\mathbf{t}')\right)\), is defined.
+
+\begin{figure}[h]
+	\subfigure{\includegraphics[width = 0.45\textwidth]{../Figures/tree3}}
+	\subfigure{\includegraphics[width = 0.45\textwidth]{../Figures/unipgp}}
+	\caption{An example of a Phylogenetic Tree and a simulated univariate phylogenetic Gaussian process of that tree.}
+\end{figure}
 
 Deriving a tractable form of the phylogenetic covariance function requires some simplifying assumptions. Firstly, it is assumed that conditional on their common ancestors in the phylogenetic tree \(\mathbf{T}\), any two traits are statistically independent. 
 
@@ -120,6 +136,12 @@ Thus, given function-valued traits observed at \(\mathbf{f} \times \mathcal{t}\)
 
 The problem of obtaining estimators \(\hat{\phi}_F\) and \(\hat{X}_{\mathbf{T}}\) is dealt with by Hajipantelis et al. \cite{hadjipantelis2013function} \(\hat{\phi}_F\) is obtained by Independent Components Analysis, as described by Blaschke \& Wiscott\cite{blaschke2004cubica} after using a resampling procedure to obtain stable principal components for samples of traits balanced by species. Given \(\hat{\phi}_F\), the estimated matrix of mixing coefficients is \(\hat{X}_{\mathbf{T}} = \mathcal{E} (\hat{\phi}_F^{\mathsf{T}})^{-1}\). 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.9\textwidth]{../Figures/basis.eps}
+	\caption{Set of basis functions identified}
+\end{figure}
+
 Each column of \(X_{\mathbf{T}}\) is an independent, univariate, phylogenetic Gaussian process, \(X_i^{\mathbf{T}}(\mathcal{t})\), modelled here with phylogenetic Ornsetin-Uhlenbeck process kernel.
 
 The phylogenetic Ornstein-Uhlenbeck process is defined by the kernel
@@ -139,10 +161,12 @@ Ancestral Reconstruction of the function valued trait for the species at \(\math
 \begin{equation}
 A = \sum_{i=1}^{n} \left( \Sigma_{\mathbf{T}}^i(\mathbf{t}^*, \mathcal{t}) \left( \Sigma_{\mathbf{T}}^i(\mathcal{t}, \mathcal{t})
 \right)^{-1} X_i^{\mathcal{E}} (\mathcal{t}) \phi_i(\cdot) \right)
+\label{eqn:postmean}
 \end{equation}
 \begin{equation}
 B = \sum_{i=1}^{n}\left( \Sigma_{\mathbf{T}}^i(\mathbf{t}^*, \mathbf{t}^*) -  \Sigma_{\mathbf{T}}^i(\mathbf{t}^*, \mathcal{t}) \left( \Sigma_{\mathbf{T}}^i(\mathcal{t}, \mathcal{t})
 \right)^{-1} \Sigma_{\mathbf{T}}^i(\mathbf{t}^*, \mathcal{t})^{\mathsf{T}} \right) \phi_i (\cdot)
+\label{eqn:postvar}
 \end{equation}
 
 We note that the elements of \(\theta\) each have intuitive interpretations. The variance of observations in the sample is \(\sigma_p + \sigma_n\), where \(\sigma_p\) is the phylogenetic noise, and \(\sigma_n\) is the non-phylogenetic noise. \(\sigma_p\) is the proportion of variation which can be accounted for by the cophenetic distance between any \(\mathbf{t}, \mathbf{t}' \in \mathbf{T}\), while \(\sigma_n\) accounts for other sources of variation which may be observed at \(\mathbf{t}\). The length-scale parameter, \(\ell\) then indicates the strength of the correlation along \(\mathbf{T}\), where large values of \(\ell\) indicate a slowly decaying correlation. 
@@ -197,14 +221,14 @@ Collen's \cite{collen2012evolution} Bat super-tree provided the basis for the ph
 	\label{tab::dataset}
 \end{table}
 
-\subsection{Hyperparameter Estimation for Phylogenetic Gaussian Processes}
+\subsection{Hyperparameter Estimation and Ancestral Trait Reconstruction with Phylogenetic Gaussian Processes}
 
 We are interested in modelling the evolution of \(\mathcal{E}^{\mathbf{t}}(\cdot)\), the function valued trait representing the echolocation call of the species of bat observed at \(\mathbf{t} \in \mathbf{T}\). However, only 22 species of bat are represented in \(\mathbf{T}\). The relatively small size of this dataset presents challenges for the estimation of the kernel hyperparameters in (\ref{eqn:oukernel}). A short simulation study was performed to investigate the dynamics at play.
 
 Although there are only 22 leaf nodes of the phylogeny \(\mathbf{T}\), we are not limited to a single observation at any given \(\mathbf{t}\). By sampling at each leaf node of \(\mathbf{T}\) multiple times, larger samples can be obtained, improving the quality of the estimators \(\hat{\theta}\). With this in mind, 1000 independent, univariate phylogenetic Gaussian processes were simulated for each of \(n = \{1,2,4,8\}\) according to the kernel (\ref{eqn:oukernel}) with \(\theta = [1,50,1]^{\mathsf{T}}\), where \(n\) is the number of samples generated at each leaf node. The likelihood of each of these samples (\ref{eqn:t2mle}) is then maximised to give a type II maximum likelihood estimator \(\hat{\theta}\) and the results summarised in Table \ref{tab::ind_simulation}. This simulation study indicates that at least \(n = 4\) observations are needed at each leaf node to provide stable estimators \(\hat{\theta}\). Thus, when implementing the phylogenetic Ornstein-Uhlenbeck process for bat echolocation call traits, resampling methods must be used to provide multiple estimates for \(\mathcal{E}^{\mathbf{t}}(\cdot)\)
 
 \begin{table}[ht]
-	\tbl{Summary of \(\hat{\theta}\) for 1000 samples reporting the sample mean (standard error) }
+	\tbl{Summary of \(\hat{\theta}\) for 1000 simulations of independent Ornstein-Uhlenbeck processes with \(\theta = [1,50,1]^{\mathsf{T}}\) reporting: sample mean (standard error) }
 	{
 		\begin{tabular}{@{}cccc@{}} \toprule
 			\(n\)  & \(\hat{\sigma}_p \) & \(\hat{\ell}\) & \(\hat{\sigma}_n\) \\
@@ -212,12 +236,63 @@ Although there are only 22 leaf nodes of the phylogeny \(\mathbf{T}\), we are no
 			1 & 1.09 (0.47) & \(10^{14}\) (\(10^{15}\)) & 0.57 (0.54) \\
 			2 & 0.97 (0.29) & \(10^{13}\) (\(10^{14}\)) & 0.99 (0.15) \\
 			4 & 0.97 (0.25) & 63.66 (136.96) & 1.00 (0.09) \\
-			8 & 0.99 (0.24) & 56.21 (48.24) & 1.00 (0.06) \\			
+			8 & 0.99 (0.24) & 56.21 ( 48.24) & 1.00 (0.06) \\			
 			\botrule
 		\end{tabular}
 	}
 	\label{tab::ind_simulation}
 \end{table}
+
+Given the modelling assumptions made in Section \ref{sec:funrep} the best estimator for \(\mathcal{E}^{\mathbf{t}}(\cdot)\) is the sample mean given by 
+\begin{equation}
+\hat{\mathcal{E}}^{\mathbf{t}}~(\cdot) = \frac{1}{l_{\mathbf{t}}} \sum_{l = 1}^{l_{\mathbf{t}}} \frac{1}{m_l} \sum_{m = 1}^{m_l} \hat{\mathcal{E}}_{lm}^{\mathbf{t}}(\cdot)
+\label{eqn:est}
+\end{equation}
+where \(m_l\) is the total number of recordings for the \(l^{th}\) individual and \(l_{\mathbf{t}}\) is the number of individuals recorded from the species at \(\mathbf{t} \in \mathbf{T}\). However, simply calculating \(\hat{\mathcal{E}}^{\mathbf{t}}~(\cdot)\) for each species performing the analysis laid out in Section \ref{sec:pgp} means that we have too few datapoints to obtain a stable model. For this reason we implement a resampling procedure to leverage more datapoints from the dataset in order to produce stable estimates for the model parameters.
+
+A resampled estimator \(\hat{\mathcal{E}}_r^{\mathbf{t}}(\cdot)\) is obtained by sampling at random one call from \(n_r\) individuals of the species at \(\mathbf{t}\) and calculating the arithmetic mean of the sample, similarly to (\ref{eqn:est}). This can be repeated to create an arbitrary number of estimates for \(\mathcal{E}^{\mathbf{t}}\). Resampling across all the species in the dataset we create a resampled dataset \(\hat{\mathcal{E}}_r = [\hat{\mathcal{E}}_{r,1}^{\mathbf{t}_1}(\mathbf
+f), \hat{\mathcal{E}}_{r,2}^{\mathbf{t}_1}(\mathbf
+f), \dots, \hat{\mathcal{E}}_{r,1}^{\mathbf{t}_2}(\mathbf
+f), \dots]\), where \(\mathbf{f}\) is the vector of frequencies over which \(\hat{\mathcal{E}}_{r}^{\mathbf{t}_2}(
+\cdot)\) is sampled. The methods outlined in Section \ref{sec:pgp} can then be applied to each resampled \(\hat{\mathcal{E}}_r\)
+
+Our analysis took \(n_r = 4\) and included 4 samples of \(\hat{\mathcal{E}}_r^{\mathbf{t}}(\mathbf{f})\) in each \(\hat{\mathcal{E}}_r\). This reflected the structure of the dataset, for which the minimum number of individuals per species was 4, and the results of the simulations study which showed that 4 observations per species provided reasonably stable estimates for \(\theta\). Note also that \(\mathbf{f} = [9,10, \dots, 212]^{\mathsf{T}}\), which reflects the spectrum of frequencies over which bats emit echolocation calls. \(\hat{\phi}_F\) was obtained by averaging the basis identified over all \(\hat{\mathcal{E}}_r\) and applying a single set of basis functions to each dataset. Thus \(\hat{X}_r\), the matrix of mixing coefficients described by (\ref{eqn:inv}), the columns of which are modelled a phylogenetic Ornstein-Uhlenbeck processes, is obtained for each \(\hat{\mathcal{E}}_r\). \(\hat{\theta}_r\) is then the type II maximum likelihood estimator of (\ref{eqn:t2mle}) given \(\hat{\mathcal{E}}_r\). Table \ref{tab::bat_results} presents the results of the hyperparameter estimation procedure.
+
+\begin{table}[ht]
+	\tbl{Summary of \(\hat{\theta}_r\) over 1000 \(\hat{\mathcal{E}_r}\) samples reporting: sample mean (standard error)}
+	{
+		\begin{tabular}{@{}cccc@{}} \toprule
+			Basis & \(\hat{\sigma}_p\) & \(\hat{\ell}\) & \(\hat{\sigma}_n\) \\
+			\colrule
+			1 & 2.30 (0.11) & 12.27 ( 4.18) & 1.18 (0.11) \\
+			2 & 3.17 (0.11) & 27.63 ( 3.70) & 1.26 (0.13) \\
+			3 & 4.05 (0.32) & 70.50 (20.31) & 1.19 (0.12) \\
+			4 & 3.32 (0.17) & 22.86 ( 8.95) & 1.96 (0.19) \\
+			5 & 3.00 (0.13) & 26.93 ( 2.85) & 1.21 (0.11) \\
+			6 & 3.70 (0.14) & 12.82 ( 4.52) & 1.28 (0.15) \\
+			\botrule
+		\end{tabular}
+	}
+	\label{tab::bat_results}
+\end{table}
+
+Ancestral reconstruction by a phylogenetic Gaussian process involves obtaining the posterior predictive distribution of the trait at the ancestral node \(\mathbf{t}^* \in \mathbf{T}\) given by (\ref{eqn:postmean}) and (\ref{eqn:postvar}).
+
+To perform ancestral trait reconstruction for \(\mathcal{E}^{\mathbf{t}^*}(\cdot)\) the species level traits are estimated by (\ref{eqn:est}) and and the model hyperparameters by the mean values of \(\theta_r\) reported in Table \ref{tab::bat_results}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.9\textwidth]{../Figures/ancrec.eps}
+	\caption{Ancestral Reconstruction}
+\end{figure}
+
+\section{Conclusions and Further Work}
+
+This analysis has developed a limited model for the evolution of echolocation in bats and identified a phylogenetic signal which allows the construction of a posterior predictive distribution for ancestral traits. The log energy spectral density has been identified as a trait representative of the echolocation call in bats. This trait, representing the energy intensity of the call across the frequency spectrum, is modelled as a series of independent components, combinations of energy intensities across the spectrum, each of which evolves according to a phylogenetic Ornstein-Uhlenbeck process. Estimating the hyperparameters governing these Ornstein-Uhlenbeck processes from observed traits provides an insight into the evolutionary path of these traits. Each of the hyperparameters has an intuitive interpretation where \(\frac{\sigma_p}{\sigma_p + \sigma_n}\) indicates the proportion of variation in the sample attributable solely to the evolutionary path while \(\ell\) provides a measure of how quickly correlation between observations along the evolutionary path decays. We are working towards understanding what the results of this analysis mean for with respect to the evolution of echolocation in bats.
+
+One particular limitation of the model is the representation of the echolocation call by a log energy spectral density. Echolocation calls have complex spectral and temporal structures, much of which is lost in the log energy spectral density representation. An alternative representation, which preserves more of this structure, is the spectrogram. Implementing this model using the spectrogram as a functional representation of the echolocation call is a priority, as the results of such an analysis will hopefully be more meaningful.
+
+
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}

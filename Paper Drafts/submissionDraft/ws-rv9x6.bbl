@@ -1,0 +1,94 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem{ams04}
+\AmS{}, \emph{\AmS-\LaTeX{} Version 2 User's Guide}. American Mathematical
+  Society, Providence  (2004).
+\newblock \url{http://www.ams.org/tex/amslatex.html}.
+
+\bibitem{jarl88}
+C.~Jarlskog, \emph{CP {V}iolation}. World Scientific, Singapore  (1988).
+
+\bibitem{best03}
+B.~W. Bestbury, {$R$}-matrices and the magic square, \emph{J. Phys. A}. {\bf
+  36}\penalty0 (7), \penalty0 1947--1959  (2003).
+\newblock ISSN 0305-4470.
+
+\bibitem{pier02}
+P.~X. Deligne and B.~H. Gross, On the exceptional series, and its descendants,
+  \emph{C. R. Math. Acad. Sci. Paris}. {\bf 335}\penalty0 (11), \penalty0
+  877--881  (2002).
+\newblock ISSN 1631-073X.
+
+\bibitem{weis94}
+G.~H. Weiss, ed., \emph{Contemporary {P}roblems in {S}tatistical {P}hysics}.
+  SIAM, Philadelphia  (1994).
+
+\bibitem{gupt97}
+R.~K. Gupta and S.~D. Senturia.
+\newblock Pull-in time dynamics as a measure of absolute pressure.
+\newblock In \emph{Proc. {IEEE} Int. Workshop on Microelectromechanical Systems
+  ({MEMS}'97)}, pp. 290--294, Nagoya, Japan  (Jan, 1997).
+
+\bibitem{rich60}
+L.~F. Richardson, \emph{Arms and {I}nsecurity}. Boxwood, Pittsburg  (1960).
+
+\bibitem{chur90}
+R.~V. Churchill and J.~W. Brown, \emph{Complex {V}ariables and {A}pplications},
+  5th edn. McGraw-Hill  (1990).
+
+\bibitem{benh93}
+F.~Benhamou and A.~Colmerauer, eds., \emph{Constraint {L}ogic {P}rogramming,
+  {S}elected {R}esearch}. MIT Press  (1993).
+
+\bibitem{bake72}
+D.~W. Baker and N.~L. Carter, \emph{Seismic {V}elocity {A}nisotropy
+  {C}alculated for {U}ltramafic {M}inerals and {A}ggregates}, In eds. H.~C.
+  Heard, I.~V. Borg, N.~L. Carter, and C.~B. Raleigh, \emph{Flow and {F}racture
+  of {R}ocks}, vol.~16, \emph{Geophys. Mono.}, pp. 157--166.
+\newblock Am. Geophys. Union  (1972).
+
+\bibitem{hobb92}
+J.~D. Hobby.
+\newblock {A User's Manual for MetaPost}.
+\newblock Technical Report 162, AT\&T Bell Laboratories, Murray Hill, New
+  Jersey  (Apr, 1992).
+
+\bibitem{bria84}
+B.~W. Kernighan.
+\newblock {PIC}---{A} graphics language for typesetting.
+\newblock Computing Science Technical Report 116, AT\&T Bell Laboratories,
+  Murray Hill, New Jersey  (1984).
+
+\bibitem{hear94}
+H.~C. Heard, I.~V. Borg, N.~L. Carter, and C.~B. Raleigh.
+\newblock {VoQS: Voice Quality Symbols}.
+\newblock Revised to 1994  (1994).
+
+\bibitem{brow88}
+M.~E. Brown.
+\newblock \emph{An Interactive Environment for Literate Programming}.
+\newblock PhD thesis, Texas A\&M University, TX, USA  (Aug, 1988).
+
+\bibitem{lodh74}
+G.~S. Lodha.
+\newblock Quantitative interpretation of ariborne electromagnetic response for
+  a spherical model.
+\newblock Master's thesis, University of Toronto, Canada  (1974).
+
+\bibitem{dani73}
+D.~Jones.
+\newblock {The term `phoneme'}.
+\newblock In eds. W.~E. Jones and J.~Laver, \emph{Phonetics in Linguistics: A
+  Book of Reading}, pp. 187--204. Longman, London  (1973).
+
+\bibitem{davi93}
+B.~Davidsen.
+\newblock {NetPBM}  (1993).
+\newblock \url{ftp://ftp.wustl.edu/graphics/graphics/packages/NetPBM}.
+
+\end{thebibliography}
