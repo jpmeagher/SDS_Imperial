@@ -21,16 +21,15 @@
 
 \chapter[Ancestral Reconstruction of Bat Echolocation Calls]{Phylogenetic Gaussian Processes for the Ancestral Reconstruction of Bat Echolocation Calls}\label{ra_ch1}
 
-\author[J.P. Meagher et al.]{J.P. Meagher, T. Damoulas, K.E. Jones, and M. Girolami\footnote{Author footnote.}}
+\author[J.P. Meagher et al.]{J.P. Meagher\footnote{Department of Statistics, The University of Warwick}, T. Damoulas\footnote{The University of Warwick and The Alan Turing Institute}, K.E. Jones\footnote{Centre for Biodiversity and Environment Research, University College London}, and M. Girolami\footnote{Imperial College London and The Alan Turing Institute}\\}
 %\index[aindx]{Author, F.} % or \aindx{Author, F.}
 %\index[aindx]{Author, S.} % or \aindx{Author, S.}
 
-\address{Department of Statistics,\\
-University of Warwick, \\
-J.Meagher@Warwick.ac.uk\footnote{Affiliation footnote.}}
+\address{
+J.Meagher@Warwick.ac.uk}
 
 \begin{abstract}
-The reconstruction of ancestral echolocation calls is an important part of understanding the evolutionary history of bats. General techniques for the ancestral reconstruction of function-valued traits have recently been proposed. A full implementation of phylogenetic Gaussian processes for the ancestral reconstruction of function-valued traits representing bat echolocation calls is presented here. A phylogenetic signal was found in the data and ancestral reconstruction performed. This promising preliminary analysis paves the way for more realistic models of the evolution of echolocation in bats.
+The reconstruction of ancestral echolocation calls is an important part of understanding the evolutionary history of bats. General techniques for the ancestral reconstruction of function-valued traits have recently been proposed. A full implementation of phylogenetic Gaussian processes for the ancestral reconstruction of function-valued traits representing bat echolocation calls is presented here. A phylogenetic signal was found in the data and ancestral reconstruction performed. This promising preliminary analysis paves the way for more realistic models for the evolution of echolocation in bats.
 \end{abstract}
 %\markright{Customized Running Head for Odd Page} % default is Chapter Title.
 \body
@@ -44,7 +43,7 @@ Bats (order \textit{Chiroptera}) have been identified as ideal bioindicators for
 
 Monitoring bat populations provides useful information, but an understanding the orders evolutionary history is required to identify the cause and effect of any changes observed. The echolocation call structure, which reflects a bats diet and habitat,\cite{aldridge1987morphology}  is a key aspect of this natural history. Reconstructing ancestral traits\cite{joy2016ancestral} relies on a statistical comparative analysis incorporating extant species and fossil records. \cite{felsenstein2004inferring} However, the fossil record is of limited use in inferring ancestral echolocation calls in bats. Therefore, statistical data science techniques may shed some light on this topic.
 
-Previous studies of bat echolocation calls for both classification \cite{walters2012continental} and ancestral reconstruction \cite{collen2012evolution} analysed features extracted from the call spectrogram. These call features relied upon domain knowledge to ensure they were sensibly selected and applied. More recently, general techniques for the classification of acoustic signals have been developed. \cite{stathopoulos2014bat} \cite{damoulas2010bayesian} General techniques for the ancestral reconstruction of function-valued traits have also been proposed. \cite{group2012phylogenetic} Jones \& Moriarty \cite{jones2013evolutionary} extend Gaussian Process Regression \cite{rasmussen2006gaussian} to model the evolution of function-valued traits\cite{meyer2005up} over a phylogeny, a method which was demonstrated for synthetic data by Hajipantelis et al.\cite{hadjipantelis2013function}. This current research investigates these techniques in the context of the evolution of bat echolocation calls.
+Previous studies of bat echolocation calls for both classification \cite{walters2012continental} and ancestral reconstruction \cite{collen2012evolution} analysed features extracted from the call spectrogram. These call features relied upon domain knowledge to ensure they were sensibly selected and applied. More recently, general techniques for the classification of acoustic signals have been developed. \cite{stathopoulos2014bat} \cite{damoulas2010bayesian} General techniques for the ancestral reconstruction of function-valued traits have also been proposed. \cite{group2012phylogenetic} Jones \& Moriarty \cite{jones2013evolutionary} extend Gaussian Process Regression \cite{rasmussen2006gaussian} to model the evolution of function-valued traits\cite{meyer2005up} over a phylogeny, a method which was demonstrated for synthetic data by Hajipantelis et al.\cite{hadjipantelis2013function}. This current research investigates these techniques in the context of the bat echolocation calls.
 
 Section \ref{sec:funrep} presents details on representing echolocation call recordings as function-valued traits, and Section \ref{sec:pgp} then illustrates the model for evolution developed by a phylogenetic Gaussian Process. The results of our analysis of bat echolocation calls are then presented and discussed. 
 \section{Echolocation Calls as Function-Valued Traits}
@@ -85,7 +84,7 @@ We now have a functional representation of each bats echolocation call where the
 
 \section{Phylogenetic Gaussian Processes}
 \label{sec:pgp}
-Gaussian Processes (GP) provide a concise way of fitting a prior belief over the distribution of functions. The structure of this prior belief is described by the GP model kernel, defining it's covariance function. GPs are useful for classification and regression problems, and allow posterior predictive distributions to be obtained.  An in depth treatment of GPs is given by Rasmussen \& Williams.\cite{rasmussen2006gaussian}  
+A Gaussian process places a prior distribution over functions, \(f(x) \sim \mathcal{GP}(m(x), k (x, x'),\) where \(x \in \mathbf{R}^P\) is some input variable, the mean function \(m(x) = \mathbf{E}[f(x)]\), and the covariance function \(k(x, x') = \mathnormal{cov}(f(x), f(x') )\). Given observations \(\mathbf{y}\) at locations \(\{x_n\}_{n=1}^N\), Gaussian noise, and kernel hyperparameters \(\theta\), a posterior predictive distribution over functions can be inferred analytically. See Rasmussen \& Williams\cite{rasmussen2006gaussian} for an in depth treatment.   
 
 Jones \& Moriarty\cite{jones2013evolutionary} extend GPs for the inference of function-valued traits over a phylogeny. Consider \(\mathcal{E}^{\mathbf{t}}(\cdot)\), a functional representation of the echolocation call of the species observed at the point \(\mathbf{t}\) on the phylogenetic tree \(\mathbf{T}\) with respect to frequency. Modelling this as GP function, where \(\mathcal{E}^{\mathbf{t}}(f)\) corresponds to a point \((f, \mathbf{t})\) on the frequency-phylogeny \(F \times \mathbf{T}\), requires that a suitable phylogenetic covariance function, \(\Sigma_{\mathbf{T}}\left((f,\mathbf{t}), (f',\mathbf{t}')\right)\), is defined.
 
@@ -165,7 +164,7 @@ We note that the elements of \(\theta\) each have intuitive interpretations. The
 
 \subsection{Data Description}
 
-The post processed echolocation call data accompanying Stathopoulos et al. \cite{stathopoulos2017bat} was used in this analysis. Echolocation calls were recorded across north and central Mexico with a Pettersson 1000x bat detector (Pettersson Elektronik AB, Uppsala, Sweden). Live trapped bats were measured and identified to species level using field keys.\cite{ceballos2005mamiferos} \cite{medellin2sanchez} Bats were recorded either while released from the hand or while tied to a zip line. The bat detector was set to record calls manually in real time, full spectrum at 500 kHz. 
+The post processed echolocation call data for bats found across north and central Mexico which accompanied Stathopoulos et al. \cite{stathopoulos2017bat} was used in this analysis. Live bats were caught, identified, and recorded either while released from the hand or while tied to a zip line. Calls were recorded at a sampling frequency of 500 kHz. 
 In total the dataset consists of 22 species in five families, 449 individual bats and 1816 individual echolocation call recordings. The distribution of these call recordings across species is summarised in Table \ref{tab::dataset}.
 
 Collen's \cite{collen2012evolution} Bat super-tree provided the basis for the phylogenetic tree of the recorded bat species, \(\mathbf{T}\). 
@@ -280,9 +279,7 @@ To perform ancestral trait reconstruction for \(\mathcal{E}^{\mathbf{t}^*}(\cdot
 
 This preliminary analysis has developed a limited model for the evolution of echolocation in bats and identified a phylogenetic signal which allows the construction of a posterior predictive distribution for ancestral traits. The log energy spectral density has been identified as a trait representative of the echolocation call in bats. This trait, representing the energy intensity of the call across the frequency spectrum, is modelled as a series of independent components, combinations of energy intensities across the spectrum, each of which evolves according to a phylogenetic Ornstein-Uhlenbeck process. Estimating the hyperparameters governing these Ornstein-Uhlenbeck processes from observed traits provides an insight into the evolutionary path of these traits. Each of the hyperparameters has an intuitive interpretation where \(\frac{\sigma_p}{\sigma_p + \sigma_n}\) indicates the proportion of variation in the sample attributable solely to the evolutionary path while \(\ell\) provides a measure of how quickly correlation between observations along the evolutionary path decays. We are working towards understanding what the results of this analysis could mean with respect to the evolution of echolocation in bats.
 
-One particular limitation of the model is the representation of the echolocation call by a log energy spectral density. Echolocation calls have complex spectral and temporal structures, much of which is lost in the log energy spectral density representation. An alternative representation, which preserves more of this structure, is the spectrogram. Implementing this model using the spectrogram as a functional representation of the echolocation call is a priority, as the results of such an analysis are expected to be more meaningful.
-
-
+One particular limitation of the model is the representation of the echolocation call by a log energy spectral density. Echolocation calls have complex spectral and temporal structures, much of which is lost in the log energy spectral density representation. An alternative time-frequency representation, which preserves more of this structure, is the spectrogram. Modelling the evolution of bat echolocation calls with spectrograms is an active area of future research.
 
 \bibliographystyle{ws-rv-van}
 \bibliography{../BatBiblio}

@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -114,15 +114,5 @@ T.~Blaschke and L.~Wiskott, Cubica: Independent component analysis by
   simultaneous third-and fourth-order cumulant diagonalization, \emph{IEEE
   Transactions on Signal Processing}. {\bf 52}\penalty0 (5), \penalty0
   1250--1256  (2004).
-
-\bibitem{ceballos2005mamiferos}
-G.~Ceballos and G.~Oliva.
-\newblock Los mam{\'\i}feros silvestres de m{\'e}xico. comisi{\'o}n nacional
-  para el conocimiento y uso de la biodiversidad  (2005).
-
-\bibitem{medellin2sanchez}
-R.~Medell{\'\i}n and H.~Arita, O. s{\'a}nchez h. 2008. identificaci{\'o}n de
-  los murci{\'e}lagos de m{\'e}xico. claves de campo, \emph{Revista Mexicana de
-  Mastozoolog{\'\i}a}. {\bf 2}, \penalty0 1--83 .
 
 \end{thebibliography}

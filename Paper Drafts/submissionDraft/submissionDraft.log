@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.21)  19 MAY 2017 12:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.21)  19 MAY 2017 15:14
 entering extended mode
 **./submissionDraft.tex
 (submissionDraft.tex
@@ -375,14 +375,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 Package epstopdf Info: Source file: <../Figures/callrec.eps>
-(epstopdf)                    date: 2017-05-19 11:20:18
+(epstopdf)                    date: 2017-05-19 15:05:40
 (epstopdf)                    size: 60328 bytes
 (epstopdf)             Output file: <../Figures/callrec-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-19 11:20:23
-(epstopdf)                    size: 25981 bytes
+(epstopdf)                    date: 2017-05-19 15:11:06
+(epstopdf)                    size: 25976 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/callrec-eps-conv
 erted-to.pdf ../Figures/callrec.eps>
-(epstopdf)             \includegraphics on input line 57.
+(epstopdf)             \includegraphics on input line 56.
 Package epstopdf Info: Output file is already uptodate.
 
 <../Figures/callrec-eps-converted-to.pdf, id=14, 505.89pt x 433.62pt>
@@ -390,17 +390,17 @@ File: ../Figures/callrec-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/callrec-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/callrec-eps-converted-to.pdf used on input 
-line 57.
+line 56.
 (pdftex.def)             Requested size: 97.56549pt x 83.62593pt.
 Package epstopdf Info: Source file: <../Figures/esd.eps>
-(epstopdf)                    date: 2017-05-19 11:28:38
-(epstopdf)                    size: 31920 bytes
+(epstopdf)                    date: 2017-05-19 15:09:00
+(epstopdf)                    size: 31821 bytes
 (epstopdf)             Output file: <../Figures/esd-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-19 11:29:26
-(epstopdf)                    size: 14702 bytes
+(epstopdf)                    date: 2017-05-19 15:11:07
+(epstopdf)                    size: 14290 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/esd-eps-converte
 d-to.pdf ../Figures/esd.eps>
-(epstopdf)             \includegraphics on input line 58.
+(epstopdf)             \includegraphics on input line 57.
 Package epstopdf Info: Output file is already uptodate.
 
 <../Figures/esd-eps-converted-to.pdf, id=15, 505.89pt x 433.62pt>
@@ -408,17 +408,17 @@ File: ../Figures/esd-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/esd-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/esd-eps-converted-to.pdf used on input line
- 58.
+ 57.
 (pdftex.def)             Requested size: 97.56549pt x 83.62593pt.
 Package epstopdf Info: Source file: <../Figures/funrep.eps>
-(epstopdf)                    date: 2017-05-19 11:29:22
-(epstopdf)                    size: 6290 bytes
+(epstopdf)                    date: 2017-05-19 15:09:07
+(epstopdf)                    size: 6289 bytes
 (epstopdf)             Output file: <../Figures/funrep-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-19 11:29:26
-(epstopdf)                    size: 4282 bytes
+(epstopdf)                    date: 2017-05-19 15:11:07
+(epstopdf)                    size: 4242 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/funrep-eps-conve
 rted-to.pdf ../Figures/funrep.eps>
-(epstopdf)             \includegraphics on input line 59.
+(epstopdf)             \includegraphics on input line 58.
 Package epstopdf Info: Output file is already uptodate.
 
 <../Figures/funrep-eps-converted-to.pdf, id=16, 505.89pt x 433.62pt>
@@ -426,19 +426,19 @@ File: ../Figures/funrep-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/funrep-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/funrep-eps-converted-to.pdf used on input l
-ine 59.
+ine 58.
 (pdftex.def)             Requested size: 97.56549pt x 83.62593pt.
  [2] [3 <../Figures/callrec-eps-converted-to.pdf> <../Figures/esd-eps-converted
 -to.pdf> <../Figures/funrep-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <../Figures/tree3.eps>
-(epstopdf)                    date: 2017-05-19 11:35:16
-(epstopdf)                    size: 3859 bytes
+(epstopdf)                    date: 2017-05-19 15:10:26
+(epstopdf)                    size: 3867 bytes
 (epstopdf)             Output file: <../Figures/tree3-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-19 11:35:21
-(epstopdf)                    size: 3062 bytes
+(epstopdf)                    date: 2017-05-19 15:11:08
+(epstopdf)                    size: 3072 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/tree3-eps-conver
 ted-to.pdf ../Figures/tree3.eps>
-(epstopdf)             \includegraphics on input line 93.
+(epstopdf)             \includegraphics on input line 92.
 Package epstopdf Info: Output file is already uptodate.
 
 <../Figures/tree3-eps-converted-to.pdf, id=45, 505.89pt x 361.35pt>
@@ -446,17 +446,17 @@ File: ../Figures/tree3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/tree3-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/tree3-eps-converted-to.pdf used on input li
-ne 93.
+ne 92.
 (pdftex.def)             Requested size: 146.34575pt x 104.53517pt.
 Package epstopdf Info: Source file: <../Figures/unipgp.eps>
-(epstopdf)                    date: 2017-05-19 11:34:04
-(epstopdf)                    size: 15252 bytes
+(epstopdf)                    date: 2017-05-19 15:11:01
+(epstopdf)                    size: 15283 bytes
 (epstopdf)             Output file: <../Figures/unipgp-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-19 11:35:21
-(epstopdf)                    size: 6608 bytes
+(epstopdf)                    date: 2017-05-19 15:11:08
+(epstopdf)                    size: 6614 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/unipgp-eps-conve
 rted-to.pdf ../Figures/unipgp.eps>
-(epstopdf)             \includegraphics on input line 94.
+(epstopdf)             \includegraphics on input line 93.
 Package epstopdf Info: Output file is already uptodate.
 
 <../Figures/unipgp-eps-converted-to.pdf, id=46, 505.89pt x 361.35pt>
@@ -464,27 +464,32 @@ File: ../Figures/unipgp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/unipgp-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/unipgp-eps-converted-to.pdf used on input l
-ine 94.
+ine 93.
 (pdftex.def)             Requested size: 146.34575pt x 104.53517pt.
  [4 <../Figures/tree3-eps-converted-to.pdf> <../Figures/unipgp-eps-converted-to
 .pdf>]
 Package epstopdf Info: Source file: <../Figures/basis.eps>
-(epstopdf)                    date: 2017-05-19 11:46:07
-(epstopdf)                    size: 24181 bytes
+(epstopdf)                    date: 2017-05-19 15:13:53
+(epstopdf)                    size: 24225 bytes
 (epstopdf)             Output file: <../Figures/basis-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-05-19 11:46:12
 (epstopdf)                    size: 10276 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/basis-eps-conver
 ted-to.pdf ../Figures/basis.eps>
-(epstopdf)             \includegraphics on input line 131.
-Package epstopdf Info: Output file is already uptodate.
+(epstopdf)             \includegraphics on input line 130.
+runsystem(epstopdf --outfile=../Figures/basis-eps-converted-to.pdf ../Figures/b
+asis.eps)...executed (allowed).
+
+Package epstopdf Info: Result file: <../Figures/basis-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-05-19 15:14:08
+(epstopdf)                    size: 10275 bytes.
 
 <../Figures/basis-eps-converted-to.pdf, id=59, 505.89pt x 361.35pt>
 File: ../Figures/basis-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/basis-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/basis-eps-converted-to.pdf used on input li
-ne 131.
+ne 130.
 (pdftex.def)             Requested size: 292.6915pt x 209.07036pt.
 
 
@@ -499,7 +504,7 @@ Package epstopdf Info: Source file: <../Figures/ancrec.eps>
 (epstopdf)                    size: 11508 bytes
 (epstopdf)             Command: <epstopdf --outfile=../Figures/ancrec-eps-conve
 rted-to.pdf ../Figures/ancrec.eps>
-(epstopdf)             \includegraphics on input line 275.
+(epstopdf)             \includegraphics on input line 274.
 Package epstopdf Info: Output file is already uptodate.
 
 <../Figures/ancrec-eps-converted-to.pdf, id=86, 505.89pt x 289.08pt>
@@ -507,18 +512,18 @@ File: ../Figures/ancrec-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/ancrec-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/ancrec-eps-converted-to.pdf used on input l
-ine 275.
+ine 274.
 (pdftex.def)             Requested size: 292.6915pt x 167.25629pt.
  [10 <../Figures/ancrec-eps-converted-to.pdf>] (submissionDraft.bbl [11]) [12] 
 (submissionDraft.aux) ) 
 Here is how much of TeX's memory you used:
- 3688 strings out of 493622
- 47981 string characters out of 3143650
- 122359 words of memory out of 3000000
- 6981 multiletter control sequences out of 15000+200000
+ 3682 strings out of 493622
+ 47907 string characters out of 3143650
+ 123351 words of memory out of 3000000
+ 6975 multiletter control sequences out of 15000+200000
  13809 words of font info for 51 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 41i,11n,26p,1256b,279s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,26p,1256b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx
 5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx6.pfb><C:
@@ -545,7 +550,7 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmti9.pfb>
-Output written on submissionDraft.pdf (12 pages, 435646 bytes).
+Output written on submissionDraft.pdf (12 pages, 434101 bytes).
 PDF statistics:
  188 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
