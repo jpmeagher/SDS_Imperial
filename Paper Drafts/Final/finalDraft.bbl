@@ -1,0 +1,113 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem{pettorelli2013indicator}
+N.~Pettorelli, J.~E. Baillie, and S.~M. Durant, Indicator bats program: a
+  system for the global acoustic monitoring of bats  (2013).
+
+\bibitem{stathopoulos2017bat}
+V.~Stathopoulos, V.~Zamora-Gutierrez, K.~E. Jones, and M.~Girolami, Bat
+  echolocation call identification for biodiversity monitoring: a probabilistic
+  approach, \emph{Journal of the Royal Statistical Society: Series C (Applied
+  Statistics)}  (2017).
+
+\bibitem{damoulas2010bayesian}
+T.~Damoulas, S.~Henry, A.~Farnsworth, M.~Lanzone, and C.~Gomes.
+\newblock Bayesian classification of flight calls with a novel dynamic time
+  warping kernel.
+\newblock In \emph{Machine Learning and Applications (ICMLA), 2010 Ninth
+  International Conference on}, pp. 424--429  (2010).
+
+\bibitem{jones2009carpe}
+G.~Jones, D.~S. Jacobs, T.~H. Kunz, M.~R. Willig, and P.~A. Racey, Carpe
+  noctem: the importance of bats as bioindicators, \emph{Endangered species
+  research}. {\bf 8}\penalty0 (1-2), \penalty0 93--115  (2009).
+
+\bibitem{griffin1944echolocation}
+D.~R. Griffin, Echolocation by blind men, bats and radar, \emph{Science}. {\bf
+  100}\penalty0 (2609), \penalty0 589--590  (1944).
+
+\bibitem{walters2012continental}
+C.~L. Walters, R.~Freeman, A.~Collen, C.~Dietz, M.~Brock~Fenton, G.~Jones,
+  M.~K. Obrist, S.~J. Puechmaille, T.~Sattler, B.~M. Siemers, et~al., A
+  continental-scale tool for acoustic identification of european bats,
+  \emph{Journal of Applied Ecology}. {\bf 49}\penalty0 (5), \penalty0
+  1064--1074  (2012).
+
+\bibitem{aldridge1987morphology}
+H.~Aldridge and I.~Rautenbach, Morphology, echolocation and resource
+  partitioning in insectivorous bats, \emph{The Journal of Animal Ecology}. pp.
+  763--778  (1987).
+
+\bibitem{joy2016ancestral}
+J.~B. Joy, R.~H. Liang, R.~M. McCloskey, T.~Nguyen, and A.~F. Poon, Ancestral
+  reconstruction, \emph{PLoS Comput Biol}. {\bf 12}\penalty0 (7), \penalty0
+  e1004763  (2016).
+
+\bibitem{felsenstein2004inferring}
+J.~Felsenstein and J.~Felenstein, \emph{Inferring phylogenies}. vol.~2, Sinauer
+  associates Sunderland  (2004).
+
+\bibitem{collen2012evolution}
+A.~Collen.
+\newblock \emph{The evolution of echolocation in bats: a comparative approach}.
+\newblock PhD thesis, UCL (University College London)  (2012).
+
+\bibitem{stathopoulos2014bat}
+V.~Stathopoulos, V.~Zamora-Gutierrez, K.~Jones, and M.~Girolami.
+\newblock Bat call identification with gaussian process multinomial probit
+  regression and a dynamic time warping kernel.
+\newblock In \emph{Artificial Intelligence and Statistics}, pp. 913--921
+  (2014).
+
+\bibitem{group2012phylogenetic}
+T.~F.~P. Group, Phylogenetic inference for function-valued traits: speech sound
+  evolution, \emph{Trends in ecology \& evolution}. {\bf 27}\penalty0 (3),
+  \penalty0 160--166  (2012).
+
+\bibitem{jones2013evolutionary}
+N.~S. Jones and J.~Moriarty, Evolutionary inference for function-valued traits:
+  Gaussian process regression on phylogenies, \emph{Journal of The Royal
+  Society Interface}. {\bf 10}\penalty0 (78), \penalty0 20120616  (2013).
+
+\bibitem{rasmussen2006gaussian}
+C.~E. Rasmussen, Gaussian processes for machine learning  (2006).
+
+\bibitem{meyer2005up}
+K.~Meyer and M.~Kirkpatrick, Up hill, down dale: quantitative genetics of
+  curvaceous traits, \emph{Philosophical Transactions of the Royal Society of
+  London B: Biological Sciences}. {\bf 360}\penalty0 (1459), \penalty0
+  1443--1455  (2005).
+
+\bibitem{hadjipantelis2013function}
+P.~Z. Hadjipantelis, N.~S. Jones, J.~Moriarty, D.~A. Springate, and C.~G.
+  Knight, Function-valued traits in evolution, \emph{Journal of The Royal
+  Society Interface}. {\bf 10}\penalty0 (82), \penalty0 20121032  (2013).
+
+\bibitem{ramsay2006functional}
+J.~O. Ramsay, \emph{Functional data analysis}. Wiley Online Library  (2006).
+
+\bibitem{berndt1994using}
+D.~J. Berndt and J.~Clifford.
+\newblock Using dynamic time warping to find patterns in time series.
+\newblock In \emph{KDD workshop}, vol.~10, pp. 359--370  (1994).
+
+\bibitem{antoniou2006digital}
+A.~Antoniou, \emph{Digital signal processing}. McGraw-Hill Toronto, Canada:
+  (2006).
+
+\bibitem{friedman2001elements}
+J.~Friedman, T.~Hastie, and R.~Tibshirani, \emph{The elements of statistical
+  learning}. vol.~1, Springer series in statistics Springer, Berlin  (2001).
+
+\bibitem{blaschke2004cubica}
+T.~Blaschke and L.~Wiskott, Cubica: Independent component analysis by
+  simultaneous third-and fourth-order cumulant diagonalization, \emph{IEEE
+  Transactions on Signal Processing}. {\bf 52}\penalty0 (5), \penalty0
+  1250--1256  (2004).
+
+\end{thebibliography}
