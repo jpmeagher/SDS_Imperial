@@ -1,10 +1,10 @@
 ---
-title: "Conference Talk"
+title: "Untitled"
 author: "J.P. Meagher"
-date: "1 July 2017"
+date: "2 July 2017"
 output:
-  pdf_document: default
-  html_document: default
+  ioslides_presentation: default
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -271,4 +271,3 @@ Also the model for evolution used could also be improved, using Stable models fo
 That about covers everything I wanted to say. I'd just like thank Winton and Imperial for giving me the chance to present my work, I hope you enjoyed it and I'm happy to try answer any questions you may have.
 
 Thank you.
-
